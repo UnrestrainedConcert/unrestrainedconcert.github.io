@@ -24,7 +24,8 @@
                 @mouseover="headerItemEnhover($event)" 
                 @mouseout="headerItemDehover($event)" 
                 :class="{ 'last': index === leftHeaderItems.length - 1 }">
-                <a href="#">{{ item }}</a>
+                <router-link :to="item.to">{{ item.label }}</router-link>
+                <!--<a href="#">{{ item }}</a>-->
               </li>
             </ul>
         </nav>
@@ -36,7 +37,8 @@
               @mouseover="headerItemEnhover($event)" 
               @mouseout="headerItemDehover($event)"
               :class="{ 'last': index === rightHeaderItems.length - 1 }">
-              <a href="#">{{ item }}</a>
+              <router-link :to="item.to">{{ item.label }}</router-link>
+              <!--<a href="#">{{ item }}</a>-->
             </li>
           </ul>
         </nav>
@@ -49,8 +51,19 @@
     name: 'HeaderView',
     data() {
       return {
-        leftHeaderItems: ['Concerts', 'About', 'Explore', 'Support'], 
-        rightHeaderItems: ['Contact', 'Library', 'Secure']
+        
+      leftHeaderItems: [
+        { label: 'Concerts', to: '/concerts' },
+        { label: 'About', to: '/about' },
+        { label: 'Events', to: '/events' },
+        { label: 'Support', to: '/support' },
+        { label: 'FAQ', to: '/faq' }
+      ],
+      rightHeaderItems: [
+        { label: 'Contact', to: '/contact' },
+        { label: 'Library', to: '/library' },
+        { label: 'Secure', to: '/secure' }
+      ]
       };
     },
     methods: {
