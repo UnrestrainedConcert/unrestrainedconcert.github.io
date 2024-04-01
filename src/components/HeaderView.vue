@@ -93,7 +93,7 @@
   }
 
   .year {
-    font-size: min(60px, 8vh);
+    font-size: min(min(60px, 8vh), 4vw);
     /*font-weight: 900;*/
     float: right;
     margin-top: auto;
@@ -121,13 +121,13 @@
   
   .orchestra-name {
     display: flex;
-    font-size: 3.5vh;
+    font-size: min(3.5vh, 2.5vw);
     font-weight: bold;
     margin-left: 1.35vw; /* Adjust as needed */
   }
 
   .ur {
-    font-size: 4vh;
+    font-size: min(4vh, 3vw);
   }
 
   .nav-container {
