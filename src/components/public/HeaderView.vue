@@ -2,7 +2,7 @@
     <header>
       <div class="header-content">
           <div class="orchestra-content">
-            <img src="../assets/URFO_logo.png" alt="URFO Logo" class="logo">
+            <img src="../../assets/URFO_logo.png" alt="URFO Logo" class="logo">
             <div class="orchestra-name">
               <div class="protest-guerrilla-regular ur urfo-red">UN</div>
               <div class="protest-guerrilla-regular ur urfo-orange">RESTRAINED</div>

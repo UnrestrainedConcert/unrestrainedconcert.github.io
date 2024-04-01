@@ -7,7 +7,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import HeaderView from './components/HeaderView.vue';
+import HeaderView from './components/public/HeaderView.vue';
 
 export default defineComponent({
   name: 'App',

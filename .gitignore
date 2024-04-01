@@ -5,6 +5,7 @@ package.json
 
 # Secure Files
 public/secure.html
+src/assets/secure/*
 
 # local env files
 .env.local

@@ -9,4 +9,5 @@
     export default {
         name: 'SecureView'
     };
+    console.log("You won't find the password by just inspecting here, nor will you find it by checking the git repo :)");
 </script>
