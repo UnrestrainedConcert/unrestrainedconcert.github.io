@@ -1,6 +1,10 @@
 .DS_Store
 node_modules
+package.lock.json
+package.json
 
+# Secure Files
+public/secure.html
 
 # local env files
 .env.local
