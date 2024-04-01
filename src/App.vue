@@ -18,5 +18,19 @@ export default defineComponent({
 </script>
 
 <style>
-/* Add your global styles here */
+
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+
+.urfo-red {
+  color: #b20000;
+}
+
+.urfo-orange {
+  color: #ff6638;
+}
+
+.urfo-blue {
+  color: #0032c9;
+}
+
 </style>

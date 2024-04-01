@@ -1,24 +1,66 @@
 <template>
     <header>
-        <div class="header-content">
+      <div class="header-content">
+          <div class="orchestra-content">
             <img src="../assets/URFO_logo.png" alt="URFO Logo" class="logo">
-            <div class="orchestra-name">UnRestrained Festival Orchestra</div>
-        </div>
-        <hr class="line-between"/>
+            <div class="orchestra-name">
+              <div class="protest-guerrilla-regular ur urfo-red">UN</div>
+              <div class="protest-guerrilla-regular ur urfo-orange">RESTRAINED</div>
+              &nbsp;Festival Orchestra</div>
+          </div>
+          <div class="year protest-guerrilla-regular">
+            <div class="urfo-red">2024</div>.<div class="urfo-blue">8</div>
+          </div>
+      </div>
+      <div class="separate-line">
+          <hr class="line-between">
+      </div>
+      <div class="nav-container">
         <nav>
-            <ul>
-                <li><a href="#">Concerts</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Explore</a></li>
-                <li><a href="#">Support</a></li>
+            <ul class="left">
+              <li 
+                v-for="(item, index) in leftHeaderItems" 
+                :key="index" 
+                @mouseover="headerItemEnhover($event)" 
+                @mouseout="headerItemDehover($event)" 
+                :class="{ 'last': index === leftHeaderItems.length - 1 }">
+                <a href="#">{{ item }}</a>
+              </li>
             </ul>
         </nav>
+        <nav>
+          <ul class="right">
+            <li 
+              v-for="(item, index) in rightHeaderItems" 
+              :key="index" 
+              @mouseover="headerItemEnhover($event)" 
+              @mouseout="headerItemDehover($event)"
+              :class="{ 'last': index === rightHeaderItems.length - 1 }">
+              <a href="#">{{ item }}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   </template>
   
   <script>
   export default {
-    name: 'HeaderView'
+    name: 'HeaderView',
+    data() {
+      return {
+        leftHeaderItems: ['Concerts', 'About', 'Explore', 'Support'], 
+        rightHeaderItems: ['Contact', 'Library', 'Secure']
+      };
+    },
+    methods: {
+      headerItemEnhover(event) {
+        event.target.classList.add('protest-guerrilla-regular');
+      },
+      headerItemDehover(event) {
+        event.target.classList.remove('protest-guerrilla-regular');
+      }
+    }
   };
   </script>
   
@@ -27,44 +69,108 @@
     background-color: #ffffff;
     color: black;
     padding: 10px 0;
+    width: 90vw;
+    align-items: center;
+    /* horizontally center */
+    margin: 0 auto;
   }
   
   .header-content {
     display: flex;
-    align-items: center;
-    max-width: 1200px;
+    justify-content: space-between;
     margin: 0 auto;
-    padding: 0 20px;
+    width: 100%;
+  }
+
+  .orchestra-content {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 70%;
+    float: left;
+    margin-right: auto;
+  }
+
+  .year {
+    font-size: min(60px, 8vh);
+    /*font-weight: 900;*/
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    display: flex;
+  }
+
+  .protest-guerrilla-regular {
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .separate-line {
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
   }
   
   .logo {
     max-width: 100px;
+    width: 15vh;
     height: auto;
   }
   
   .orchestra-name {
-    font-size: 1.6em;
+    display: flex;
+    font-size: 3.5vh;
     font-weight: bold;
-    margin-left: 20px; /* Adjust as needed */
+    margin-left: 1.35vw; /* Adjust as needed */
+  }
+
+  .ur {
+    font-size: 4vh;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5vh;
+    width: 100%;
+    margin: 0 auto;
   }
 
   nav{
     display: flex;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin-top: 1vh;
+    font-size:2.5vh;
+    justify-content: space-between;
+    width: 50%;
   }
 
-  nav ul {
+  ul.left{
+    float: left;
+    margin-right: auto;
+  }
+
+  ul.right{
+    float: right;
+    margin-left: auto;
+  }
+
+  nav ul{
     list-style-type: none;
-    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
     padding: 0;
     display: flex;
   }
   
   nav ul li {
-    margin-right: 45px;
+    margin-right: 3vw;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  nav ul li.last {
+    margin-right: 0;
   }
   
   nav ul li a {
@@ -73,7 +179,13 @@
   }
   
   nav ul li a:hover {
-    text-decoration: underline;
+    color: #b20000;
+    font-weight: bold;
+  }
+
+  nav ul.right li a:hover {
+    color: #0032c9;
+    font-weight: bold;
   }
 
   .line-between {
@@ -81,8 +193,8 @@
     border: 1;
     height: 1px;
     background-color: white;
-    width: 50%;
-    margin: 10px 0;
+    width: 100%;
+    margin: auto;
   }
   </style>
   
