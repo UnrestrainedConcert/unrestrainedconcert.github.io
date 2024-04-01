@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!--Link to dist/secure.html via IFrame-->
-        <iframe src="dist/secure.html" width="100%" height="60%"></iframe>
+        <!--Link to dist/secure.html (since it is on server no need for dist) via IFrame-->
+        <iframe src="secure.html" width="100%" height="60%"></iframe>
     </div>
 </template>
 
