@@ -8,7 +8,8 @@ def main():
 
     content = content.replace("This page is password protected.", "Restrict to URFO Musicians and Staff Members only.")
     content = content.replace("Protected Page", "URFO Internal Portal")
-    content = content.replace("background:#000;", "background:#b20000;")
+    content = content.replace("background:#000;", "background:#800000;")
+    content = content.replace(".box{max-width:24rem;width:100%;background:var(--gray-800);padding:1rem;border-radius:.125rem;margin:0 auto;height:170px}", ".box{max-width:24rem;width:100%;background:var(--gray-800);padding:1rem;border-radius:.125rem;margin:0 auto;height:200px}")
 
     with open(secure_html_path, 'w') as file:
         file.write(content)
