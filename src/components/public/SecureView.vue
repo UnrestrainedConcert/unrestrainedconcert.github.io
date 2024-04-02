@@ -15,9 +15,9 @@
         mounted() {
             // to prevent the unexpected web history navigation when refreshing the page
             this.iframeSrc = 'secure.html';
+            console.log("You won't find the password by just inspecting here, nor will you find it by checking the git repo :)");
         },
     };
-    console.log("You won't find the password by just inspecting here, nor will you find it by checking the git repo :)");
 </script>
 
 <style>

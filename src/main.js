@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+// import { createCompatVue } from '@vue/compat';
 import App from './App.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 // public
@@ -32,4 +33,5 @@ const public_router = createRouter({
 
 let app = createApp(App);
 app.config.globalProperties.window = window;
+// app.use(createCompatVue());
 app.use(public_router).mount('#app');
