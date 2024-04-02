@@ -6,9 +6,12 @@
 </template>
 
 <script>
-    export default {
-        name: 'ScoreCard'
-    };
+// import { saveAs } from 'file-saver';
+export default {
+    name: 'ScoreCard',
+    mounted() {
+    },
+};
 </script>
 
 <style scoped>

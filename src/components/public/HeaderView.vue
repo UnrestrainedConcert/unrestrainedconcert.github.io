@@ -1,13 +1,16 @@
 <template>
     <header>
       <div class="header-content">
-          <div class="orchestra-content">
-            <img src="../../assets/URFO_logo.png" alt="URFO Logo" class="logo">
-            <div class="orchestra-name">
-              <div class="protest-guerrilla-regular ur urfo-red">UN</div>
-              <div class="protest-guerrilla-regular ur urfo-orange">RESTRAINED</div>
-              &nbsp;Festival Orchestra</div>
-          </div>
+          <router-link to="/" class="orchestra-content">
+            <div class="orchestra-content">
+                <img src="../../assets/URFO_logo.png" alt="URFO Logo" class="logo">
+                    <div class="orchestra-name">
+                      <div class="protest-guerrilla-regular ur urfo-red">UN</div>
+                      <div class="protest-guerrilla-regular ur urfo-orange">RESTRAINED</div>
+                      &nbsp;Festival Orchestra
+                    </div>
+            </div>
+          </router-link>
           <div class="year protest-guerrilla-regular">
             <div class="urfo-red">2024</div>.<div class="urfo-blue">8</div>
           </div>
@@ -62,7 +65,7 @@
       rightHeaderItems: [
         { label: 'Contact', to: '/contact' },
         { label: 'Library', to: '/library' },
-        { label: 'Secure', to: '/secure' }
+        { label: 'Secure', to: '/secret' }
       ]
       };
     },
@@ -86,6 +89,8 @@
     align-items: center;
     /* horizontally center */
     margin: 0 auto;
+    user-select: none;
+    height: 19.5vh;
   }
   
   .header-content {
@@ -96,6 +101,8 @@
   }
 
   .orchestra-content {
+    color: inherit; /* Use the parent's color for the text */
+    text-decoration: inherit; /* Use the parent's text decoration */
     display: flex;
     align-items: center;
     margin-top: auto;

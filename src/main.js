@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 // public
+import HomeView from    './components/public/HomeView.vue';
 import ConcertsView from    './components/public/ConcertsView.vue';
 import AboutView    from    './components/public/AboutView.vue';
 import EventsView   from    './components/public/EventsView.vue';
@@ -13,6 +14,7 @@ import SecureView   from    './components/public/SecureView.vue';
 
 
 const public_routes = [
+    { path: '/',            component: HomeView}, 
     { path: '/concerts',    component: ConcertsView },
     { path: '/about',       component: AboutView },
     { path: '/events',      component: EventsView },
@@ -20,7 +22,7 @@ const public_routes = [
     { path: '/faq',         component: FAQView },
     { path: '/contact',     component: ContactView },
     { path: '/library',     component: LibraryView },
-    { path: '/secure',      component: SecureView }
+    { path: '/secret',      component: SecureView}
 ];
 
 const public_router = createRouter({
@@ -28,4 +30,6 @@ const public_router = createRouter({
     routes: public_routes
 });
 
-createApp(App).use(public_router).mount('#app');
+let app = createApp(App);
+app.config.globalProperties.window = window;
+app.use(public_router).mount('#app');

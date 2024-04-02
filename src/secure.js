@@ -13,4 +13,15 @@ const secure_router = createRouter({
     routes: secure_routes
 });
 
-createApp(SecureApp).use(secure_router).mount('#secure-app');
+let app = createApp(SecureApp);
+app.config.globalProperties.window = window;
+app.use(secure_router).mount('#secure-app');
+const privateKeyData = window.privateKeyData;
+const publicKeyData = window.publicKeyData;
+const passphrase = window.passphrase;
+
+export{
+    privateKeyData,
+    publicKeyData,
+    passphrase,
+};

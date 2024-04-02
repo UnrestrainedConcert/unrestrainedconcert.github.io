@@ -5,7 +5,17 @@ package.json
 
 # Secure Files
 public/secure.html
-src/assets/secure/*
+public/secure
+src/assets/secure
+encrypter.py
+fingerprint
+secured_raw_assets
+private.pgp
+public.pgp
+vue.config.js
+babel.config.js
+unrestrained.gpg
+jsconfig.json
 
 # local env files
 .env.local
