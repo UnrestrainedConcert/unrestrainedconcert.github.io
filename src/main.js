@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 // public
-import HomeView from    './components/public/HomeView.vue';
+import HomeView from        './components/public/HomeView.vue';
 import ConcertsView from    './components/public/ConcertsView.vue';
 import AboutView    from    './components/public/AboutView.vue';
 import EventsView   from    './components/public/EventsView.vue';
@@ -26,7 +26,7 @@ const public_routes = [
 ];
 
 const public_router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory (),
     routes: public_routes
 });
 
