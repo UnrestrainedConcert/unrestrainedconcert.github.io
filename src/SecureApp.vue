@@ -19,7 +19,9 @@
     methods: {
       async decryptAndDownload(encryptedFilePath, typename) {
             const openpgp = require('openpgp');
-            const { privateKeyData, publicKeyData, passphrase } = await import('@/secure.js');
+            const publicKeyData = window.publicKeyData;
+            const privateKeyData = window.privateKeyData;
+            const passphrase = window.passphrase;
             const publicKey = await openpgp.readKey({ armoredKey: publicKeyData });
             const privateKey = await openpgp.decryptKey({
                 privateKey: await openpgp.readPrivateKey({ armoredKey: privateKeyData }),
