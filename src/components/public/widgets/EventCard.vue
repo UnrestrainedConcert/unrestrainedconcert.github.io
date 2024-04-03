@@ -2,9 +2,9 @@
     <div class="card">
         <div class="card-content" :class="{ 'reverse': concertId % 2 === 1 }">
             <div class="poster">
-                <img :src="posterBlobUrl" alt="Concert Poster" />
+                <img :src="posterBlobUrl" alt="Concert Poster" class="card-main-poster" :class="{ 'reverse': concertId % 2 === 1 }"/>
             </div>
-            <div class="event-card-detail">
+            <div class="event-card-detail" :class="{ 'reverse': concertId % 2 === 1}">
                 <div class="event-card-title great-vibes-regular">{{ concert.title }}</div>
                 <div class="event-card-subtitle">{{ concert.subtitle }}</div>
                 <div class="event-card-description noto-serif" style="white-space: pre-line">{{ concert.description }}</div>
@@ -71,6 +71,42 @@ export default {
         flex-direction: row-reverse;
     }
 
+    @keyframes slideInFromLeft {
+        0% {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1; /* Show image */
+        }
+    }
+
+    @keyframes slideInFromRight {
+        0% {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1; /* Show image */
+        }
+    }
+
+    .card-main-poster {
+        animation: slideInFromLeft 1.5s forwards;
+        animation-name: slideInFromLeft;
+        animation-duration: 1.5s;
+        opacity: 0; /* Initially hidden */
+    }
+
+    .card-main-poster.reverse {
+        animation: slideInFromRight 1.5s forwards;
+        animation-name: slideInFromRight;
+        animation-duration: 1.5s;
+        opacity: 0; /* Initially hidden */
+    }
+
     .poster {
     flex: 1;
     }
@@ -98,6 +134,20 @@ export default {
         flex: 2;
         padding: 0 2vw; /* Responsive padding */
         max-width: 30vw;
+        animation: slideInFromRight 1.5s forwards;
+        animation-name: slideInFromRight;
+        animation-duration: 1.5s;
+        opacity: 0; /* Initially hidden */
+    }
+
+    .event-card-detail.reverse {
+        flex: 2;
+        padding: 0 2vw; /* Responsive padding */
+        max-width: 30vw;
+        animation: slideInFromLeft 1.5s forwards;
+        animation-name: slideInFromLeft;
+        animation-duration: 1.5s;
+        opacity: 0; /* Initially hidden */
     }
     
     .event-card-title {

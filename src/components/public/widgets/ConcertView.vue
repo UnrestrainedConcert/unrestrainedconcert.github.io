@@ -2,7 +2,7 @@
     <div class="concert-page-view">
         <div class="concert-page-title great-vibes-regular">{{ concert.title }}</div>
         <div class="concert-page-poster">
-            <div class="concert-page-poster-img"><img :src="posterBlobUrl" alt="Concert Poster" /></div>
+            <div class="concert-page-poster-img"><img :src="posterBlobUrl" alt="Concert Poster" class="concert-page-main-poster-img"/></div>
             <div class="concert-page-poster-caption">{{ concert.posterCaption }}</div>
         </div>
         <div class="concert-page-overview-article">
@@ -110,11 +110,26 @@ export default {
     margin-right: auto;
 }
 
-img {
+
+.concert-page-main-poster-img {
     max-width: 50vw;
     height: auto;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0; /* Initially hidden */
+    animation: expand 1.5s forwards;
+    animation-name: expand;
+    animation-duration: 1.5s;
+}
+
+@keyframes expand {
+  0% {
+    transform: scale(0.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1; /* Show image */
+  }
 }
 
 .concert-page-poster-img {
