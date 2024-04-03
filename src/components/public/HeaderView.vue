@@ -56,7 +56,7 @@
       return {
         
       leftHeaderItems: [
-        { label: 'Concerts', to: '/concerts' },
+        { label: 'What\'s on', to: '/whatson' },
         { label: 'About', to: '/about' },
         { label: 'Events', to: '/events' },
         { label: 'Support', to: '/support' },

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import EventCard from './Events/EventCard.vue';
+import EventCard from './widgets/EventCard.vue';
 import pastConcerts from '@/assets/concerts/past.json';
 import upcomingConcerts from '@/assets/concerts/upcoming.json';
 export default {

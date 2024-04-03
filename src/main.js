@@ -1,10 +1,9 @@
 import { createApp } from 'vue';
-// import { createCompatVue } from '@vue/compat';
 import App from './App.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 // public
 import HomeView from        './components/public/HomeView.vue';
-import ConcertsView from    './components/public/ConcertsView.vue';
+import WhatsonView  from    './components/public/WhatsonView.vue';
 import AboutView    from    './components/public/AboutView.vue';
 import EventsView   from    './components/public/EventsView.vue';
 import SupportView  from    './components/public/SupportView.vue';
@@ -16,7 +15,7 @@ import SecureView   from    './components/public/SecureView.vue';
 
 const public_routes = [
     { path: '/',            component: HomeView}, 
-    { path: '/concerts',    component: ConcertsView },
+    { path: '/whatson',     component: WhatsonView },
     { path: '/about',       component: AboutView },
     { path: '/events',      component: EventsView },
     { path: '/support',     component: SupportView },
@@ -28,10 +27,16 @@ const public_routes = [
 
 const public_router = createRouter({
     history: createWebHashHistory (),
-    routes: public_routes
+    routes: public_routes, 
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { top: 0 };
+        }
+    }
 });
 
 let app = createApp(App);
 app.config.globalProperties.window = window;
-// app.use(createCompatVue());
 app.use(public_router).mount('#app');

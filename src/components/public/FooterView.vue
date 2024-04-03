@@ -1,9 +1,12 @@
 <template>
     <footer class="footer">
         <div class="container">
-            <p class="copyright">
-                &copy; 2021-2024 UnRestrained Festival Orchestra. All rights reserved.
-            </p>
+            <div class="website-copyright">
+                &copy; 2021-2024 Unrestrained Festival Orchestra. All rights reserved.
+            </div>
+            <div class="poster-copyright">
+                Unrestrained Poster for 2022 & 2023 &copy; Crystal Cheng. All rights reserved.
+            </div>
         </div>
     </footer>
 </template>
@@ -25,11 +28,21 @@ export default {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 50vw;
+    margin-top: 0.3vh;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .copyright {
-    font-size: 1.5vh;
+    font-size: 1.2vh;
+}
+
+.website-copyright {
+    margin-bottom: 0.3vh;
 }
 </style>

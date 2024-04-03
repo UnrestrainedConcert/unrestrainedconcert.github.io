@@ -27,25 +27,39 @@ export default defineComponent({
       elheight: 0
     }
   },
-  mounted() {
+  async mounted() {
     window.addEventListener('scroll', this.handleScroll);
-    // this.footerSticky();
-    setInterval(this.footerSticky, 500);
-    // useResizeObserver(this.$el, () => {
-    //   this.footerSticky();
-    // });
+    // poll on refs until it is defined
+    while (this.$refs === undefined) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    // set watch on refs.el.clientHeight, when it changes, run footerSticky and handleScroll
+    this.$watch(() => this.$refs.el.clientHeight, 
+      () => {
+        this.footerSticky();
+        window.removeEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', this.handleScroll);
+      }
+    );
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
+    updateElHeight() {
+      this.elheight = this.$refs.el.clientHeight;
+    },
     scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     handleScroll() {
       const scrollPosition = window.scrollY;
-      const minScroll = 100; // Start fading out at this point
-      const maxScroll = 600; // Fully transparent at this point
+      let clientHeight = this.$refs.el.clientHeight;
+      if (clientHeight === null || clientHeight === undefined) {
+        clientHeight = 0;
+      }
+      const minScroll = Math.max((1/30) * clientHeight, 10); // Start fading out at this point
+      const maxScroll = Math.max((1/5) * clientHeight, 2 * minScroll); // Fully transparent at this point
       const opacity = Math.min(1, Math.max(0, 1 - ((scrollPosition - minScroll) / (maxScroll - minScroll))));
       this.headerOpacity = opacity;
 
@@ -56,9 +70,9 @@ export default defineComponent({
       }
     },
     footerSticky() {
-      if (this.$el.clientHeight < window.innerHeight) {
+      this.updateElHeight();
+      if (this.elheight < window.innerHeight) {
         this.$refs.footer.classList.add('sticky-footer');
-        console.log(1);
       } else {
         this.$refs.footer.classList.remove('sticky-footer');
       }
