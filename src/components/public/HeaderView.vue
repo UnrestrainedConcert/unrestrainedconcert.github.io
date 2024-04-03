@@ -90,7 +90,7 @@
     /* horizontally center */
     margin: 0 auto;
     user-select: none;
-    height: 19.5vh;
+    height: auto;
   }
   
   .header-content {
