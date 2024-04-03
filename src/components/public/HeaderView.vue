@@ -4,15 +4,15 @@
           <router-link to="/" class="orchestra-content">
             <div class="orchestra-content">
                 <img src="../../assets/URFO_logo.png" alt="URFO Logo" class="logo">
-                    <div class="orchestra-name">
-                      <div class="protest-guerrilla-regular ur urfo-red">UN</div>
-                      <div class="protest-guerrilla-regular ur urfo-orange">RESTRAINED</div>
+                    <div class="orchestra-name lobster-regular ur">
+                      <div class="urfo-red">Un</div>
+                      <div class="urfo-orange">restrained</div>
                       &nbsp;Festival Orchestra
                     </div>
             </div>
           </router-link>
-          <div class="year protest-guerrilla-regular">
-            <div class="urfo-red">2024</div>.<div class="urfo-blue">8</div>
+          <div class="year lobster-regular">
+            <div class="urfo-orange">2024</div>.<div class="urfo-red">8</div>
           </div>
       </div>
       <div class="separate-line">
@@ -127,6 +127,12 @@
     font-weight: 400;
     font-style: normal;
   }
+  
+  .lobster-regular {
+    font-family: "Lobster", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
   .separate-line {
     margin-top: 1.5vh;
@@ -204,7 +210,7 @@
   }
 
   nav ul.right li a:hover {
-    color: #0032c9;
+    color: #ff6600;
     font-weight: bold;
   }
 

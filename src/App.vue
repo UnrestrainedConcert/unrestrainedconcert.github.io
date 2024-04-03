@@ -87,6 +87,7 @@ export default defineComponent({
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 .urfo-red {
   color: #b20000;
