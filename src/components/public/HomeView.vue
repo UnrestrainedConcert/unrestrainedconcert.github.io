@@ -24,7 +24,7 @@
     animation: slideInFromTop 5s forwards;
     animation-name: slideInFromTop;
     animation-duration: 5s;
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
 }
 
 @keyframes slideInFromTop {
