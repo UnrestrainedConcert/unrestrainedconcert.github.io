@@ -1,7 +1,11 @@
 <template>
     <div class="event-view">
         <div class="event-page-title">Unrestrained History Concerts</div>
-        <ConcertView ref="concertview" class="event-concert"/>
+        <ConcertView ref="concertview" class="event-concert" v-if="ready"/>
+        <!-- 404 -->
+        <div v-else class="event-page-404 protest-guerrilla-regular urfo-red">
+            404 Not Found
+        </div>
         <div style="height:20vh; width:100vw; clear:both;"></div>
     </div>
 </template>
@@ -16,16 +20,25 @@ export default {
     data() {
         return {
             concertinfo: null,
+            ready: false,
         };
     } ,
     props: {
         concertTitle: String,
     },
-    mounted() {
-        this.concertinfo = require('@/assets/past/' + this.concertTitle + '.json');
-        this.$nextTick(() => {
-            this.$refs.concertview.setConcertInfo(this.concertinfo);
-        });
+    async mounted() {
+        try{
+            this.concertinfo = require('@/assets/past/' + this.concertTitle + '.json');
+            if (this.concertinfo != null && this.concertinfo != undefined) {
+                this.$nextTick(async () => {
+                    await this.$refs.concertview.setConcertInfo(this.concertinfo);
+                    this.ready = true;
+                });
+            }
+        }
+        catch(e) {
+            console.log(e);
+        }
     }
 }
 </script>
@@ -49,6 +62,14 @@ export default {
     margin-top: 3vh;
 }
 
+.event-page-404 {
+    font-size: 8vh;
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .event-concert {
     margin-left: auto;
     margin-right: auto;
@@ -60,6 +81,12 @@ export default {
     font-weight: 400;
     font-style: normal;
 }
+
+.protest-guerrilla-regular {
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
 .dancing-script-title {
     font-family: "Dancing Script", cursive;
