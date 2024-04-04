@@ -185,7 +185,7 @@
   nav ul{
     list-style-type: none;
     margin-top: auto;
-    margin-bottom: auto;
+    margin-bottom: 1vh;
     padding: 0;
     display: flex;
   }

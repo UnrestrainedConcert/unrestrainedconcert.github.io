@@ -1,7 +1,7 @@
 <template>
   <div id="app" ref="el">
     <div ref="header" class="header" @click="scrollToTop" :style="{ opacity: headerOpacity }">
-      <HeaderView/>
+      <HeaderView class="header-view"/>
     </div>
     <div class="router-content"><router-view/></div>
     <div ref="footer" class="footer">
@@ -130,7 +130,18 @@ body {
   z-index: 9999;
   background-color: #ffffff;
   width: 100vw;
-  height: 21.75vh;
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header-view {
+  display: inline-block;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  max-height: 100%;
 }
 
 .footer {
