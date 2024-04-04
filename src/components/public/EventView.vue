@@ -28,11 +28,11 @@ export default {
     },
     async mounted() {
         try{
-            this.concertinfo = require('@/assets/past/' + this.concertTitle + '.json');
-            if (this.concertinfo != null && this.concertinfo != undefined) {
+            this.concertinfo = await require('@/assets/past/' + this.concertTitle + '.json');
+            if (this.concertinfo !== null && this.concertinfo !== undefined) {
+                this.ready = true;
                 this.$nextTick(async () => {
                     await this.$refs.concertview.setConcertInfo(this.concertinfo);
-                    this.ready = true;
                 });
             }
         }
