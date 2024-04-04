@@ -1,5 +1,5 @@
 <template>
-    <div class="card hover-scale" @mouseover="isHovered=true" @mouseleave="isHovered=false">
+    <div class="card hover-scale" @mouseover="isHovered=true" @mouseleave="isHovered=false" @click="navigateToEvent">
         <div class="card-content" :class="{ 'reverse': concertId % 2 === 1 }">
             <div class="poster">
                 <img :src="posterBlobUrl" alt="Concert Poster" class="card-main-poster" :class="{ 'reverse': concertId % 2 === 1 }"/>
@@ -38,6 +38,12 @@ export default {
         },
         offHover() {
             this.$refs.title.classList.remove('event-card-title-hover')
+        },
+        navigateToEvent() {
+            // upcoming: go to /whatson defined in main.js
+            if (this.isUpcoming) {
+                this.$router.push({ name: 'whatson' });
+            }
         }
     },
     async mounted() {

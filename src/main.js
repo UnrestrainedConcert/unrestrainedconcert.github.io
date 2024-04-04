@@ -14,15 +14,15 @@ import SecureView   from    './components/public/SecureView.vue';
 
 
 const public_routes = [
-    { path: '/',            component: HomeView}, 
-    { path: '/whatson',     component: WhatsonView },
-    { path: '/about',       component: AboutView },
-    { path: '/events',      component: EventsView },
-    { path: '/support',     component: SupportView },
-    { path: '/faq',         component: FAQView },
-    { path: '/contact',     component: ContactView },
-    { path: '/library',     component: LibraryView },
-    { path: '/secret',      component: SecureView}
+    { path: '/',            component: HomeView     , name: 'home'}, 
+    { path: '/whatson',     component: WhatsonView  , name: 'whatson'},
+    { path: '/about',       component: AboutView    , name: 'about'},
+    { path: '/events',      component: EventsView   , name: 'events'},
+    { path: '/support',     component: SupportView  , name: 'support'},
+    { path: '/faq',         component: FAQView      , name: 'faq'},
+    { path: '/contact',     component: ContactView  , name: 'contact'},
+    { path: '/library',     component: LibraryView  , name: 'library'},
+    { path: '/secret',      component: SecureView   , name: 'secret'}
 ];
 
 const public_router = createRouter({

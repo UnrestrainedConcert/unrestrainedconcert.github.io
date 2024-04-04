@@ -3,7 +3,9 @@
     <div ref="header" class="header" @click="scrollToTop" :style="{ opacity: headerOpacity }">
       <HeaderView class="header-view"/>
     </div>
-    <div class="router-content"><router-view/></div>
+    <div class="router-content">
+      <router-view/>
+    </div>
     <div ref="footer" class="footer">
       <FooterView/>
     </div>
@@ -24,7 +26,8 @@ export default defineComponent({
   data() {
     return {
       headerOpacity: 1,
-      elheight: 0
+      elheight: 0,
+      isSecureTab: false  // when secure, elheight should be changed manually
     }
   },
   // when the component is mounted onto page (not setup)
@@ -78,6 +81,7 @@ export default defineComponent({
       if (this.elheight < window.innerHeight) {
         this.$refs.footer.classList.add('sticky-footer');
       } else {
+        console.log("footer is not sticky");
         this.$refs.footer.classList.remove('sticky-footer');
       }
     }

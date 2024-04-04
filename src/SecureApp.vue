@@ -1,7 +1,7 @@
 <template>
     <div id="secure-app">
         <img src="./assets/URFO_logo.png" alt="URFO Logo" class="logo">
-        <h1> HELLO WORLD! </h1>
+        <h1 ref="hello"> HELLO WORLD! </h1>
         <ScoreCard />
         <!--<router-view />-->
     </div>
@@ -15,6 +15,25 @@
     name: 'SecureApp',
     components: {
         ScoreCard
+    },
+    mounted() {
+        console.log("SecureApp mounted");
+        // set timer, after 5 seconds, change the text of hello to "HELLO URFO", switch indefinitely until unmounted
+        setInterval(() => {
+            if (this.$refs.hello.innerText === "HELLO WORLD!") {
+                this.$refs.hello.innerText = "HELLO URFO!";
+            }
+            else {
+                this.$refs.hello.innerText = "HELLO WORLD!";
+            }
+            // add a random number to the end of the text
+            this.$refs.hello.innerText += Math.floor(Math.random() * 100).toString();
+        }, 5000);
+    }, 
+    unmounted() {
+        console.log("SecureApp unmounted");
+        // clear the interval
+        clearInterval();
     },
     methods: {
       /**
