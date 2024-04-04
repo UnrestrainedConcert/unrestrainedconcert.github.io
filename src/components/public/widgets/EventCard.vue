@@ -1,18 +1,19 @@
 <template>
-    <div class="card">
+    <div class="card hover-scale" @mouseover="isHovered=true" @mouseleave="isHovered=false">
         <div class="card-content" :class="{ 'reverse': concertId % 2 === 1 }">
             <div class="poster">
                 <img :src="posterBlobUrl" alt="Concert Poster" class="card-main-poster" :class="{ 'reverse': concertId % 2 === 1 }"/>
             </div>
             <div class="event-card-detail" :class="{ 'reverse': concertId % 2 === 1}">
-                <div class="event-card-title great-vibes-regular">{{ concert.title }}</div>
+                <div ref="title" class="event-card-title great-vibes-regular" :class="{ 'reverse': concertId % 2 === 1 }">{{ concert.title }}</div>
                 <div class="event-card-subtitle">{{ concert.subtitle }}</div>
+                <!-- white-space: pre-line allows treating '\n' as new-line. -->
                 <div class="event-card-description noto-serif" style="white-space: pre-line">{{ concert.description }}</div>
             </div>
         </div>
-        <div class="separate-line" v-if="!lastEvent">
-            <hr class="line-between">
-        </div>
+    </div>
+    <div class="separate-line" v-if="!lastEvent">
+        <hr class="line-between">
     </div>
     </template>
 
@@ -27,8 +28,17 @@ export default {
     },
     data() {
         return {
-            posterBlobUrl: ''
+            posterBlobUrl: '',
+            isHovered: false
         };
+    },
+    methods: {
+        onHover() {
+            this.$refs.title.classList.add('event-card-title-hover')
+        },
+        offHover() {
+            this.$refs.title.classList.remove('event-card-title-hover')
+        }
     },
     async mounted() {
         // Fetch the image file as a Blob
@@ -44,6 +54,14 @@ export default {
         const response = await fetch(path);
         const blob = await response.blob();
         this.posterBlobUrl = URL.createObjectURL(blob);
+        this.$watch(() => this.isHovered, () => {
+            if (this.isHovered) {
+                this.onHover();
+            }
+            else {
+                this.offHover();
+            }
+        });
     },
     beforeUnmount() {
         // Revoke the Blob URL to free up memory
@@ -58,6 +76,15 @@ export default {
         align-items: center;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .hover-scale {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-scale:hover {
+        transform: scale(1.2); /* Adjust the scale factor as needed */
+        cursor: pointer;
     }
 
     .card-content {
@@ -156,6 +183,14 @@ export default {
         flex-wrap: wrap; /* Allow items to wrap onto a new line */
         justify-content: left;
     }
+
+    .event-card-title-hover {
+        color: #b20000;
+    }
+
+    .event-card-title-hover.reverse {
+        color: #ff6638;
+    }
     
     .event-card-subtitle {
         font-size: 2.5vh;
@@ -175,10 +210,11 @@ export default {
         font-family: 'Times New Roman', Times, serif;
         word-wrap: break-word;
         width: auto;
+        line-height: 3vh;
     }
 
     img {
-        max-width: 16vw;
+        max-width: 17vw;
         height: auto;
     }
 
@@ -192,7 +228,7 @@ export default {
     }
 
     .separate-line {
-        margin-top: 1.5vh;
-        margin-bottom: 1.5vh;
+        margin-top: 7.5vh;
+        margin-bottom: 7.5vh;
     }
 </style>

@@ -1,23 +1,25 @@
 {
     "concerts": [
         {
-            "title": "Harmony Chamber Concert",
+            "title": "The 'Harmony' Concerto",
             "subtitle": "Concertos from Rachmaninoff & Chopin",
-            "description": "A concert that starts the whole story of URFO ......\nURFO Founder Brian planned this concert with music from C.P.E. Bach, Mendelssohn, Rachmaninoff and Chopin. The concert was opened by C.P.E. Bach's Flute Concerto, performed by guest flutists William and Jiayi Ye, accompanied by guest violinists Amy and Ziyin Lin. Then, violinist Patricia proceeded the concert with a moving performance of Mendelssohn's Violin Concerto in e minor, accompanied by Mr. Zhu. After a short intermission, the concert continues with Rachmaninoff's famous Piano Concerto No.2, performed by pianist Lindsay and was finally concluded by Brian giving a virtuoso yet rich-textured Chopin's Piano Concerto No.1.",
+            "description": "A concert that initiates the story of URFO ...... \n8 musicians delivered music from C.P.E. Bach, Mendelssohn, Rachmaninoff & Chopin.",
             "posterLink": "chopin.webp",
             "detailJson": "harmony.json"
         },
         {
             "title": "The 'Unrestrained' Concert",
             "subtitle": "Trout Quintet, Concertos from Beethoven & Prokofiev",
-            "description": "When 'Unrestrained' is officially THE 'Unrestrained'...\nThe whole concert featured chamber music and concerto, with Emma and Roy each delivered a string concerto as the concluding musician of the first and second part. The third segment of concert was astonishing, opened by the moving 'Trout' quintet, following by the virtuous Beethoven Violin Concerto performed by Patricia, and the deep and colorful Prokofiev Piano Concerto No. 2 delivered by Brian as the Grand Finale.",
-            "posterLink": "concert2022_poster_copyright_crystal_cheng.jpg"
+            "description": "When 'Unrestrained' is officially THE 'Unrestrained'...\nThis concert survived the global pandemic, and featured chamber music and concertos. Among all, Liebesträume, 'Trout' Quintet, Beethoven Violin Concerto, and Prokofiev Piano Concerto No.2 together formed an unforgettable afternoon.\n Moreover, this concert marked the start of a long-term collaboration with poster artist Crystal Cheng.",
+            "posterLink": "concert2022_poster_copyright_crystal_cheng.jpg",
+            "detailJson": "theunrestrained.json"
         },
         {
             "title": "Brian Conducts Alfred & Elgar",
             "subtitle": "Unrestrained 2023 Summer Festival",
-            "description": "Here comes the predecessor of Unrestrained Festival Orchestra and marks the beginning of Unrestrained Summer Festival!\nLindsay performed Scriabin's Piano Concerto and Emma brought Scottish Sceneries to live through her interpretation of Bruch's Scottish Fantasy. Brian, music director of URFO, led the world premiere of Alfred's 'Escapade of the Busters', and conducted Haydn's Piano Concerto No. 11 played by himself as well as the Elgar Cello Concerto with Roy as the soloist, where Roy demonstrated his deep understanding of this concerto in all movements.",
-            "posterLink": "concert2023_poster_copyright_crystal_cheng.jpg"
+            "description": "Here comes the predecessor of Unrestrained Festival Orchestra and marks the beginning of Unrestrained Summer Festival!\nAlfred Ni's collaboration with URFO starts here, while Emma and Roy returns with the hardest, yet really touching Bruch Scottish Fantasy and Elgar Cello Concerto, with Brian, URFO current music director, conducting the just-founded orchestra with Emma as the concertmaster.",
+            "posterLink": "concert2023_poster_copyright_crystal_cheng.jpg",
+            "detailJson": "unrestrained2023.json"
         }
     ]
 }

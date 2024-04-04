@@ -17,8 +17,19 @@
         ScoreCard
     },
     methods: {
-      async decryptAndDownload(encryptedFilePath, typename) {
-            const openpgp = require('openpgp');
+      /**
+        * DO NOT MODIFY
+        * method: decrypter
+        * arguments:
+        *       encryptedFilePath: path of file to be decrypted
+        *       typename: the file suffix, just in string form
+        * effect:
+        *       uses openpgp to decrypt the file content, and return a blob of file content to be displayed or downloaded
+        * side effect: 
+        *       this method is asyncrhonous method. you must use await to call this function or you may get undefined for result.
+        */
+      async decrypter(encryptedFilePath, typename) {
+            const openpgp = require('openpgp');     // this imported openpgp
             const publicKeyData = window.publicKeyData;
             const privateKeyData = window.privateKeyData;
             const passphrase = window.passphrase;
@@ -59,6 +70,7 @@
   
   <style>
   
+  /* This is an INDIVIDUAL App from App.vue and components in public, therefore import again */
   @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
   
   .urfo-red {
@@ -69,6 +81,7 @@
     color: #ff6638;
   }
   
+  /* deprecated */
   .urfo-blue {
     color: #0032c9;
   }

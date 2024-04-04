@@ -14,5 +14,5 @@ const secure_router = createRouter({
 });
 
 let app = createApp(SecureApp);
-app.config.globalProperties.window = window;
+app.config.globalProperties.window = window;        // to enable window.xxx
 app.use(secure_router).mount('#secure-app');

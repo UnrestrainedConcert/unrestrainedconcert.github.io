@@ -1,0 +1,23 @@
+{
+    "title": "The 'Unrestrained' Concert",
+    "posterLink": "poster_orchestra_default.jpg",
+    "posterCaption": "(Unrestrained Festival Chamber Orchestra 2023, most of whom are core members of the Unrestrained Festival Orchestra)",
+    "DATE_ID": 0,
+    "TIME_ID": 1,
+    "DURATION_ID": 2,
+    "LOCATION_ID": 3,
+    "date": "Aug 16th, 2023", 
+    "time": "15:00",
+    "duration": "2h (1 intm.)",
+    "location": "WFLA Piano Corner, Shanghai",
+    "tentative": [false, false, false, false],
+    "artists": [],
+    "description": "Here comes the predecessor of Unrestrained Festival Orchestra and marks the beginning of Unrestrained Summer Festival!\nLindsay performed Scriabin's Piano Concerto and Emma brought Scottish Sceneries to live through her interpretation of Bruch's Scottish Fantasy. Brian, music director of URFO, led the world premiere of Alfred's 'Escapade of the Busters', and conducted Haydn's Piano Concerto No. 11 played by himself as well as the Elgar Cello Concerto with Roy as the soloist, where Roy demonstrated his deep understanding of this concerto in all movements.",
+    "programs_announced": true,
+    "programs": [
+        "C.P.E. Bach: Double Concerto in E-flat Major, Wq. 47",
+        "Mendelssohn: Violin Concerto No.2 in e minor, Mvt. I, Op.64",
+        "Rachmaninoff: Piano Concerto No.2 in c minor, Mvt. I & II, Op.18",
+        "F.F. Chopin: Piano Concerto No.1 in e minor, All Mvts, Op.11"
+    ]
+}

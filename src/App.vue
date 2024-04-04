@@ -27,9 +27,10 @@ export default defineComponent({
       elheight: 0
     }
   },
+  // when the component is mounted onto page (not setup)
   async mounted() {
     window.addEventListener('scroll', this.handleScroll);
-    // poll on refs until it is defined
+    // poll on refs until it is defined, since it only takes a few ticks it is ok to poll.
     while (this.$refs === undefined) {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
@@ -37,6 +38,7 @@ export default defineComponent({
     this.$watch(() => this.$refs.el.clientHeight, 
       () => {
         this.footerSticky();
+        // actually I doubt whether this is useful, maybe it is unnecessary.
         window.removeEventListener('scroll', this.handleScroll);
         window.addEventListener('scroll', this.handleScroll);
       }
@@ -45,6 +47,7 @@ export default defineComponent({
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   },
+  // define functions here
   methods: {
     updateElHeight() {
       this.elheight = this.$refs.el.clientHeight;
@@ -63,10 +66,11 @@ export default defineComponent({
       const opacity = Math.min(1, Math.max(0, 1 - ((scrollPosition - minScroll) / (maxScroll - minScroll))));
       this.headerOpacity = opacity;
 
+      // there is an 0.01 buffer zone, so that there won't be frequent oscillation in a tiny change.
       if (opacity < 0.01) {
-        this.$refs.header.style.pointerEvents = 'none'; // Disable pointer events
+        this.$refs.header.style.pointerEvents = 'none';
       } else if (opacity > 0.02) {
-        this.$refs.header.style.pointerEvents = 'auto'; // Enable pointer events
+        this.$refs.header.style.pointerEvents = 'auto';
       }
     },
     footerSticky() {
@@ -83,11 +87,12 @@ export default defineComponent({
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+/* global fonts data */
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');             /* First UNRESTRAINED font, the one with tech style */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');  /* Quite un-aligned font, not in use now */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap');                 /* Formal (Traditional) Chinese Form */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');                   /* A good Cursive font used in events and what's on */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');                       /* Second UNRESTRAINED font, cursive but ok */
 
 .urfo-red {
   color: #b20000;
@@ -97,6 +102,7 @@ export default defineComponent({
   color: #ff6638;
 }
 
+/* The blue color is deprecated in Unrestrained, try to use red, orange, black, white only */
 .urfo-blue {
   color: #0032c9;
 }
@@ -123,6 +129,7 @@ body {
     overflow-x: hidden;
 }
 
+/* z-index is set large to make it guaranteed to be sticky */
 .header {
   position: sticky;
   top: 0;

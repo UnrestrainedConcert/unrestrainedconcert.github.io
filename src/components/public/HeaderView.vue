@@ -26,7 +26,7 @@
                 :key="index" 
                 @mouseover="headerItemEnhover($event)" 
                 @mouseout="headerItemDehover($event)" 
-                :class="{ 'last': index === leftHeaderItems.length - 1 }">
+                :class="{ 'last': index === leftHeaderItems.length - 1 }">    <!-- last item does not have right margin -->
                 <router-link :to="item.to">{{ item.label }}</router-link>
                 <!--<a href="#">{{ item }}</a>-->
               </li>
@@ -39,7 +39,7 @@
               :key="index" 
               @mouseover="headerItemEnhover($event)" 
               @mouseout="headerItemDehover($event)"
-              :class="{ 'last': index === rightHeaderItems.length - 1 }">
+              :class="{ 'last': index === rightHeaderItems.length - 1 }">    <!-- last item does not have right margin -->
               <router-link :to="item.to">{{ item.label }}</router-link>
               <!--<a href="#">{{ item }}</a>-->
             </li>
@@ -54,19 +54,19 @@
     name: 'HeaderView',
     data() {
       return {
-        
-      leftHeaderItems: [
-        { label: 'What\'s on', to: '/whatson' },
-        { label: 'About', to: '/about' },
-        { label: 'Events', to: '/events' },
-        { label: 'Support', to: '/support' },
-        { label: 'FAQ', to: '/faq' }
-      ],
-      rightHeaderItems: [
-        { label: 'Contact', to: '/contact' },
-        { label: 'Library', to: '/library' },
-        { label: 'Secure', to: '/secret' }
-      ]
+        // to add more tabs, edit here:
+        leftHeaderItems: [
+          { label: 'What\'s on', to: '/whatson' },
+          { label: 'About', to: '/about' },
+          { label: 'Events', to: '/events' },
+          { label: 'Support', to: '/support' },
+          { label: 'FAQ', to: '/faq' }
+        ],
+        rightHeaderItems: [
+          { label: 'Contact', to: '/contact' },
+          { label: 'Library', to: '/library' },
+          { label: 'Secure', to: '/secret' }
+        ]
       };
     },
     methods: {
