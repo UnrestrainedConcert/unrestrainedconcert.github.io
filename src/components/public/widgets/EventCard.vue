@@ -39,10 +39,15 @@ export default {
         offHover() {
             this.$refs.title.classList.remove('event-card-title-hover')
         },
-        navigateToEvent() {
+        async navigateToEvent() {
             // upcoming: go to /whatson defined in main.js
             if (this.isUpcoming) {
                 this.$router.push({ name: 'whatson' });
+            }
+            else {
+                // let concertinfo = await require('@/assets/past/' + this.concert.detailJson + '.json');
+                console.log("push route: concertTitle = " + this.concert.detailJson)
+                this.$router.push({ name: 'event', query: { concertTitle: this.concert.detailJson } });
             }
         }
     },

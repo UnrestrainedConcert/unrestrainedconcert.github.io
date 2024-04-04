@@ -1,5 +1,5 @@
 <template>
-    <div class="concert-page-view">
+    <div class="concert-page-view" v-if="isReady">
         <div class="concert-page-title great-vibes-regular">{{ concert.title }}</div>
         <div class="concert-page-poster">
             <div class="concert-page-poster-img"><img :src="posterBlobUrl" alt="Concert Poster" class="concert-page-main-poster-img"/></div>
@@ -64,26 +64,38 @@ export default {
     components: {
         ArticleView, ScheduleView
     },
-    props: {
-        concert: Object,
-    },
     data() {
         return {
             posterBlobUrl: '',
             program_list: [],
-            musicians_list: []
+            musicians_list: [],
+            isReady: false,
+            concert: null,
         };
     },
     async mounted() {
         // Fetch the image file as a Blob
-        const path = `/details/upcoming/${this.concert.posterLink}`;
-        const response = await fetch(path);
-        const blob = await response.blob();
-        this.posterBlobUrl = URL.createObjectURL(blob);
     },
     beforeUnmount() {
         // Revoke the Blob URL to free up memory
         URL.revokeObjectURL(this.posterBlobUrl);
+    },
+    methods: {
+        async setConcertInfo(concert) {
+            console.log("setConcertInfo")
+            this.concert = concert;
+            await this.setPosterBlobUrl();
+            this.setIsReady();
+        },
+        async setPosterBlobUrl() {
+            const path = `/details/upcoming/${this.concert.posterLink}`;
+            const response = await fetch(path);
+            const blob = await response.blob();
+            this.posterBlobUrl = URL.createObjectURL(blob);
+        },
+        setIsReady() {
+            this.isReady = true;
+        }, 
     }
 };
 </script>

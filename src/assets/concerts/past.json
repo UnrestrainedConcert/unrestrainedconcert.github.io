@@ -5,21 +5,21 @@
             "subtitle": "Concertos from Rachmaninoff & Chopin",
             "description": "A concert that initiates the story of URFO ...... \n8 musicians delivered music from C.P.E. Bach, Mendelssohn, Rachmaninoff & Chopin.",
             "posterLink": "chopin.webp",
-            "detailJson": "harmony.json"
+            "detailJson": "harmony"
         },
         {
             "title": "The 'Unrestrained' Concert",
             "subtitle": "Trout Quintet, Concertos from Beethoven & Prokofiev",
             "description": "When 'Unrestrained' is officially THE 'Unrestrained'...\nThis concert survived the global pandemic, and featured chamber music and concertos. Among all, Liebesträume, 'Trout' Quintet, Beethoven Violin Concerto, and Prokofiev Piano Concerto No.2 together formed an unforgettable afternoon.\n Moreover, this concert marked the start of a long-term collaboration with poster artist Crystal Cheng.",
             "posterLink": "concert2022_poster_copyright_crystal_cheng.jpg",
-            "detailJson": "theunrestrained.json"
+            "detailJson": "theunrestrained"
         },
         {
             "title": "Brian Conducts Alfred & Elgar",
             "subtitle": "Unrestrained 2023 Summer Festival",
             "description": "Here comes the predecessor of Unrestrained Festival Orchestra and marks the beginning of Unrestrained Summer Festival!\nAlfred Ni's collaboration with URFO starts here, while Emma and Roy returns with the hardest, yet really touching Bruch Scottish Fantasy and Elgar Cello Concerto, with Brian, URFO current music director, conducting the just-founded orchestra with Emma as the concertmaster.",
             "posterLink": "concert2023_poster_copyright_crystal_cheng.jpg",
-            "detailJson": "unrestrained2023.json"
+            "detailJson": "unrestrained2023"
         }
     ]
 }

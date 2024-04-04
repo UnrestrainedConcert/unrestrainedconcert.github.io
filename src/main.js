@@ -11,6 +11,7 @@ import FAQView      from    './components/public/FAQView.vue';
 import ContactView  from    './components/public/ContactView.vue';
 import LibraryView  from    './components/public/LibraryView.vue';
 import SecureView   from    './components/public/SecureView.vue';
+import EventView    from    './components/public/EventView.vue';
 
 
 const public_routes = [
@@ -22,7 +23,11 @@ const public_routes = [
     { path: '/faq',         component: FAQView      , name: 'faq'},
     { path: '/contact',     component: ContactView  , name: 'contact'},
     { path: '/library',     component: LibraryView  , name: 'library'},
-    { path: '/secret',      component: SecureView   , name: 'secret'}
+    { path: '/secret',      component: SecureView   , name: 'secret'},
+    { path: '/event',       component: EventView   ,  name: 'event', 
+                            props: route => ({
+                                concertTitle: route.query.concertTitle
+                            }) },
 ];
 
 const public_router = createRouter({

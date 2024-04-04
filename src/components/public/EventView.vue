@@ -1,26 +1,28 @@
 <template>
-    <div class="whatson-view">
-        <div class="whatson-page-title">What's on next</div>
-        <ConcertView ref="concertview" class="whatson-concert"/>
+    <div class="event-view">
+        <div class="event-page-title">Unrestrained History Concerts</div>
+        <ConcertView ref="concertview" class="event-concert"/>
         <div style="height:20vh; width:100vw; clear:both;"></div>
     </div>
 </template>
 
 <script>
 import ConcertView from './widgets/ConcertView.vue';
-import concertinfo from '@/assets/upcoming/upcoming.json';
 export default {
-    name: 'WhatsonView',
-    // Your component's logic here
+    name: 'EventView',
     components : {
-        ConcertView
+        ConcertView,
     },
     data() {
         return {
-            concertinfo
+            concertinfo: null,
         };
+    } ,
+    props: {
+        concertTitle: String,
     },
     mounted() {
+        this.concertinfo = require('@/assets/past/' + this.concertTitle + '.json');
         this.$nextTick(() => {
             this.$refs.concertview.setConcertInfo(this.concertinfo);
         });
@@ -29,14 +31,14 @@ export default {
 </script>
 
 <style scoped>
-.whatson-view {
+.event-view {
     width: 80vw;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-.whatson-page-title {
+.event-page-title {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,7 +49,7 @@ export default {
     margin-top: 3vh;
 }
 
-.whatson-concert {
+.event-concert {
     margin-left: auto;
     margin-right: auto;
     width: 57vw;
