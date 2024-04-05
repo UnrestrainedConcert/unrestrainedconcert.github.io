@@ -1,35 +1,47 @@
 <template>
-    <div class="card hover-scale" @mouseover="isHovered=true" @mouseleave="isHovered=false" @click="navigateToEvent">
-        <div class="card-content" :class="{ 'reverse': concertId % 2 === 1 }">
+    <div v-if="isMobile">
+        <div style="height:5vh; width:100vw; clear:both;"></div>
+    </div>
+    <div ref="card" class="card hover-scale" @mouseover="isHovered=true" @mouseleave="isHovered=false" @click="navigateToEvent">
+        <div ref="cardContent" class="card-content computer" :class="{ 'reverse': concertId % 2 === 1 }">
             <div class="poster">
-                <img :src="posterBlobUrl" alt="Concert Poster" class="card-main-poster" :class="{ 'reverse': concertId % 2 === 1 }"/>
+                <img ref="posterImg" :src="posterBlobUrl" alt="Concert Poster" class="card-main-poster" :class="{ 'reverse': concertId % 2 === 1 }"/>
             </div>
-            <div class="event-card-detail" :class="{ 'reverse': concertId % 2 === 1}">
-                <div ref="title" class="event-card-title great-vibes-regular" :class="{ 'reverse': concertId % 2 === 1 }">{{ concert.title }}</div>
-                <div class="event-card-subtitle">{{ concert.subtitle }}</div>
+            <div ref="cardDetail" class="event-card-detail" :class="{ 'reverse': concertId % 2 === 1}">
+                <div ref="title" class="event-card-title great-vibes-regular" :class="{ 'reverse': concertId % 2 === 1 }">{{ displayTitle }}</div>
+                <div class="event-card-subtitle">{{ displaySubtitle }}</div>
                 <!-- white-space: pre-line allows treating '\n' as new-line. -->
-                <div class="event-card-description noto-serif" style="white-space: pre-line">{{ concert.description }}</div>
+                <div class="event-card-description noto-serif" style="white-space: pre-line">{{ displayDiscription }}</div>
             </div>
         </div>
     </div>
     <div class="separate-line" v-if="!lastEvent">
-        <hr class="line-between">
+        <hr ref="cardHr" class="line-between">
+    </div>
+    <div v-else-if="isMobile">
+        <div style="height:5vh; width:100vw; clear:both;"></div>
     </div>
     </template>
 
 <script>
+import {isMobile} from '@/global.js';
 export default {
     name: 'EventCard',
     props: {
         isUpcoming: Boolean,
         concert: Object,
         concertId: Number, 
-        lastEvent: Boolean
+        lastEvent: Boolean,
+        firstEvent: Boolean
     },
     data() {
         return {
             posterBlobUrl: '',
-            isHovered: false
+            isHovered: false,
+            displayTitle: this.concert.title,
+            displaySubtitle: this.concert.subtitle,
+            displayDiscription: this.concert.description,
+            isMobile: isMobile
         };
     },
     methods: {
@@ -37,7 +49,8 @@ export default {
             this.$refs.title.classList.add('event-card-title-hover')
         },
         offHover() {
-            this.$refs.title.classList.remove('event-card-title-hover')
+            if (this.$refs.title.classList.contains('event-card-title-hover'))
+                this.$refs.title.classList.remove('event-card-title-hover')
         },
         async navigateToEvent() {
             // upcoming: go to /whatson defined in main.js
@@ -47,11 +60,64 @@ export default {
             else {
                 this.$router.push({ name: 'event', query: { concertTitle: this.concert.detailJson } });
             }
+        },
+        changeDevice(ref, toMobile) {
+            if (ref === undefined || ref == null) return;
+            if (ref.classList == undefined || ref.classList == null) return;
+            if (toMobile) {
+                if (ref.classList.contains('computer')) {
+                    ref.classList.remove('computer');
+                    ref.classList.add('mobile');
+                }
+                else {
+                    ref.classList.add('mobile');
+                }
+            }
+            else {
+                if (ref.classList.contains('mobile')) {
+                    ref.classList.remove('mobile');
+                    ref.classList.add('computer');
+                }
+                else {
+                    ref.classList.add('computer');
+                }
+            }
+        },
+        responsiveDisplay() {
+            // Responsive display
+            if (isMobile) {
+                this.displayTitle = this.concert.short_title;
+                this.displaySubtitle = this.concert.short_subtitle;
+                this.displayDiscription = this.concert.short_description;
+                this.$nextTick(() => {
+                    this.changeDevice(this.$refs.cardContent, true);
+                    this.changeDevice(this.$refs.card, true);
+                    this.changeDevice(this.$refs.title, true);
+                    this.changeDevice(this.$refs.posterImg, true);
+                    this.changeDevice(this.$refs.cardDetail, true);
+                    this.changeDevice(this.$refs.cardHr, true);
+                });
+            }
+            else {
+                this.displayTitle = this.concert.title;
+                this.displaySubtitle = this.concert.subtitle;
+                this.displayDiscription = this.concert.description;
+                this.$nextTick(() => {
+                    // cardContent
+                    this.changeDevice(this.$refs.cardContent, false);
+                    this.changeDevice(this.$refs.card, false);
+                    this.changeDevice(this.$refs.title, false);
+                    this.changeDevice(this.$refs.posterImg, false);
+                    this.changeDevice(this.$refs.cardDetail, false);
+                    this.changeDevice(this.$refs.cardHr, false);
+                });
+            }
         }
     },
     async mounted() {
         // Fetch the image file as a Blob
         let path;
+        this.responsiveDisplay();
         if (this.isUpcoming) {
             path = `/events/upcoming-posters/${this.concert.posterLink}`;
         }
@@ -62,13 +128,15 @@ export default {
         const blob = await response.blob();
         this.posterBlobUrl = URL.createObjectURL(blob);
         this.$watch(() => this.isHovered, () => {
-            if (this.isHovered) {
+            if (this.isHovered && !this.isMobile) {
                 this.onHover();
             }
-            else {
+            else if (!this.isMobile) {
                 this.offHover();
             }
         });
+        // watch window resize
+        window.addEventListener('resize', this.responsiveDisplay);
     },
     beforeUnmount() {
         // Revoke the Blob URL to free up memory
@@ -78,8 +146,15 @@ export default {
 </script>
 
 <style>
-    .card {
+    .card.computer {
         width: 50vw;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card.mobile {
+        width: 75vw;
         align-items: center;
         margin-left: auto;
         margin-right: auto;
@@ -96,13 +171,36 @@ export default {
 
     .card-content {
         display: flex;
-        flex-direction: row;
-        align-items: top;
-        margin: 2vh; /* Responsive margin */
     }
 
-    .card-content.reverse {
+    .card-content.computer {
+        flex-direction: row;
+        margin: min(2vh, 2vw); /* Responsive margin */
+        align-items: top;
+    }
+
+    .card-content.mobile {
+        flex-direction: column;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: left;
+    }
+
+    .card-content.reverse.computer {
         flex-direction: row-reverse;
+        margin: min(2vh, 2vw); /* Responsive margin */
+        align-items: top;
+    }
+
+    .card-content.reverse.mobile {
+        flex-direction: column-reverse;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: right;
     }
 
     @keyframes slideInFromLeft {
@@ -142,7 +240,7 @@ export default {
     }
 
     .poster {
-    flex: 1;
+        flex: 1;
     }
 
     .great-vibes-regular {
@@ -167,7 +265,6 @@ export default {
     .event-card-detail {
         flex: 2;
         padding: 0 2vw; /* Responsive padding */
-        max-width: 30vw;
         animation: slideInFromRight 1.5s forwards;
         animation-name: slideInFromRight;
         animation-duration: 1.5s;
@@ -177,18 +274,32 @@ export default {
     .event-card-detail.reverse {
         flex: 2;
         padding: 0 2vw; /* Responsive padding */
-        max-width: 30vw;
         animation: slideInFromLeft 1.5s forwards;
         animation-name: slideInFromLeft;
         animation-duration: 1.5s;
         opacity: 0; /* Initially hidden */
     }
+
+    .event-card-detail.computer {
+        max-width: 30vw;
+    }
+
+    .event-card-detail.mobile {
+        max-width: 70vw;
+    }
     
     .event-card-title {
-        font-size: 5vh;
         display: flex;
         flex-wrap: wrap; /* Allow items to wrap onto a new line */
         justify-content: left;
+    }
+
+    .event-card-title.computer {
+        font-size: min(5vh, 7vw);
+    }
+
+    .event-card-title.mobile {
+        font-size: 7.5vh;
     }
 
     .event-card-title-hover {
@@ -200,7 +311,7 @@ export default {
     }
     
     .event-card-subtitle {
-        font-size: 2.5vh;
+        font-size: min(2.5vh, 5vw);
         display: flex;
         flex-wrap: wrap; /* Allow items to wrap onto a new line */
         justify-content: left;
@@ -221,8 +332,15 @@ export default {
     }
 
     img {
-        max-width: 17vw;
         height: auto;
+    }
+
+    img.computer {
+        max-width: 17vw;
+    }
+
+    img.mobile {
+        max-width: 50vw;
     }
 
     .line-between {
@@ -230,8 +348,15 @@ export default {
         border: 1;
         height: 1px;
         background-color: white;
-        width: 100%;
         margin: auto;
+    }
+
+    .line-between.computer {
+        width: 100%;
+    }
+
+    .line-between.mobile {
+        width: 100%;
     }
 
     .separate-line {

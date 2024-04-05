@@ -3,7 +3,7 @@
         <div style="height:5vh; width:100vw; clear:both;"></div>
 
         <div class="events-page-title">
-            <div style="font-size: 8vh;">— Upcoming Events —</div>
+            <div style="font-size: min(8vh, 5vw);">— Upcoming Events —</div>
         </div>
 
         <div class="events-card-list">
@@ -13,13 +13,14 @@
                 :concertId="index"
                 :isUpcoming="true"
                 :lastEvent="index == upcomingConcerts.concerts.length - 1"
+                :firstEvent="index == 0"
             />
         </div>
 
         <div style="height:5vh; width:100vw; clear:both;"></div>
 
         <div class="events-page-title">
-            <div style="font-size: 8vh;">— Past Events —</div>
+            <div style="font-size: min(8vh, 5vw);">— Past Events —</div>
         </div>
         
         <div>
@@ -30,11 +31,12 @@
                 :concertId="index"
                 :isUpcoming="false"
                 :lastEvent="index == pastConcerts.concerts.length - 1"
+                :firstEvent="index == 0"
             />
         </div>
 
         <div class="events-page-title">
-            <div style="font-size: 4vh;">- More Events Coming Soon -</div>
+            <div style="font-size: min(4vh, 4vw);">- More Events Coming Soon -</div>
         </div>
 
         <div style="height:6vh; width:100vw; clear:both;"></div>
@@ -74,7 +76,7 @@ export default {
         justify-content: center;
         align-items: center;
         font-family: 'Times New Roman', Times, serif;
-        height: 15vh; /* Set height as needed */
+        height: min(15vh, 10vw); /* Set height as needed */
     }
 
     .events-cards-list {

@@ -85,7 +85,7 @@ export default {
 }
 
 .article-page-title.layer-0 {
-    font-size: 4.5vh;
+    font-size: min(4.5vh, 3.5vw);
     margin-top: 4vh;
     margin-bottom: 1.25vh;
 }

@@ -13,7 +13,6 @@ import LibraryView  from    './components/public/LibraryView.vue';
 import SecureView   from    './components/public/SecureView.vue';
 import EventView    from    './components/public/EventView.vue';
 
-
 const public_routes = [
     { path: '/',            component: HomeView     , name: 'home'}, 
     { path: '/whatson',     component: WhatsonView  , name: 'whatson'},
@@ -28,6 +27,7 @@ const public_routes = [
                             props: route => ({
                                 concertTitle: route.query.concertTitle
                             }) },
+    { path: '/:pathMatch(.*)*', redirect: { name: 'home' } }
 ];
 
 const public_router = createRouter({

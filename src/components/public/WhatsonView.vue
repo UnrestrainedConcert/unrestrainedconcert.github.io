@@ -43,7 +43,7 @@ export default {
     align-items: center;
     font-family: 'Times New Roman', Times, serif;
     height: 3vh; /* Set height as needed */
-    font-size: 2vh;
+    font-size: min(2vh, 2vw);
     margin-top: 3vh;
 }
 

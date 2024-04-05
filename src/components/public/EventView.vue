@@ -65,24 +65,39 @@ export default {
                 "Unrestrained 2024 is coming soon!\nBut not now!",
                 "Well, well, well...\nYou're looking for Unrestrained 2024, right?",
                 "Why not take a break and come back later?",
-                "DANGER!!!!!\nYou must have fell into a time machine!\nWAKE UP!",
+                "DANGER!!!!!\nYou must have fallen into a time machine!\nWAKE UP!",
                 "This time we are\n(NOT UN!) RESTRAIEND!\n(well, we won't)",
                 "Shhh...\nThis time, we will bring an elephant to the stage!\nKidding, our music director hates saint-saens!",
                 "Why did UNRESTRAINED 2024 hire a conductor with a fear of heights?\nThey needed someone to keep them grounded!",
                 "Why did the UNRESTRAINED 2024 musician break up with his metronome?\nHe couldn't stand the constant ticking!",
                 "Why did UNRESTRAINED 2024's concert hall refuse to sell tickets?\nThey were afraid the audience would 'harmonize' too loudly!",
                 "You think I will put the secure-page password here?\nYEY! The password is ...\nJkL4&$rT7#nBhY9*oPqW1!mKl3@zXcV5^dE\nrF6%gU8(iO2)jAsDfGhJkL4&$rT7#nBhY9*oPqW1!mKl3@zXcV5^dErF6%gU8(iO2)jAsDfGhJkL4&$rT7#nBhY9\n*oPqW1!mKl3@zXcV5^dErF6%gU8(iO2)jAsDfGhJkL4&$rT7#nBhY9*oPqW1!mKl3@zXcV5^dErF6%gU8(\niO2)jAsDfGh\nWhat are the rest??\nOh! I forgot! :(",
+                "Oh! You wanna join as a musician?\nContact hellobrian18@gmail.com*new-line*This time not a joke!\n(Oh By the way*new-line*UNRESTRAINED 2024 is coming soon!)\n",
+                "Do you know why the UNRESTRAINED 2024 musicians are so good at playing?\nThey neve UNRESTRAIN themselves!",
             ];
-            this.jokesplit = jokes[Math.random() * jokes.length | 0].split("\n");
-            this.title = "You have reached a mysterious place ...";
+            // make the hire non-joke more frequent
+            if (Math.random() < 0.2) {
+                this.jokesplit = jokes[jokes.length - 1].split("\n");
+                this.$refs.joke.style.color = `#b20000`;
+                this.title = "You have reached our job market :)";
+            }
+            else {
+                this.jokesplit = jokes[Math.random() * jokes.length | 0].split("\n");
+                this.$refs.joke.style.color = `rgb(${Math.random() * 255 | 0}, ${Math.random() * 255 | 0}, ${Math.random() * 255 | 0})`;
+                this.title = "You have reached a mysterious place ...";
+            }
             // random color
-            this.$refs.joke.style.color = `rgb(${Math.random() * 255 | 0}, ${Math.random() * 255 | 0}, ${Math.random() * 255 | 0})`;
+            
             // first line
-            this.joke_list.push(this.jokesplit.shift());
+            let next = this.jokesplit.shift();
+            next = next.replace("*new-line*", "\n");
+            this.joke_list.push(next);
             // use timer to show the joke line by line, 3s per line, but don't clear previous
             this.jokeTimer = setInterval(() => {
                 if (this.jokesplit.length > 0) {
-                    this.joke_list.push(this.jokesplit.shift());
+                    next = this.jokesplit.shift();
+                    next = next.replace("*new-line*", "\n");
+                    this.joke_list.push(next);
                 }
                 else {
                     clearInterval(this.jokeTimer);
@@ -122,7 +137,7 @@ export default {
 
 
 .event-page-joke {
-    font-size: 8vh;
+    font-size: min(8vh, 6vw);
     width: 100%;
     text-align: center;
     margin-left: auto;

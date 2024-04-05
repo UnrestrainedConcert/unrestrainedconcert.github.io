@@ -1,8 +1,8 @@
 <template>
-    <div class="concert-page-view" v-if="isReady">
+    <div ref="concert_page_view" class="concert-page-view" v-if="isReady">
         <div class="concert-page-title great-vibes-regular">{{ concert.title }}</div>
         <div class="concert-page-poster">
-            <div class="concert-page-poster-img"><img :src="posterBlobUrl" alt="Concert Poster" class="concert-page-main-poster-img"/></div>
+            <div ref="concert_page_poster_img" class="concert-page-poster-img"><img :src="posterBlobUrl" alt="Concert Poster" ref="concert_page_main_poster" class="concert-page-main-poster-img computer"/></div>
             <div class="concert-page-poster-caption">{{ concert.posterCaption }}</div>
         </div>
         <div class="concert-page-overview-article">
@@ -54,6 +54,7 @@
 <script>
 import ArticleView from './ArticleView.vue';
 import ScheduleView from './ScheduleView.vue';
+import { isMobile } from '@/global.js';
 export default {
     name: 'ConcertView',
     components: {
@@ -67,6 +68,12 @@ export default {
             isReady: false,
             concert: null,
         };
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.responsiveDisplay();
+            window.addEventListener('resize', this.responsiveDisplay);
+        });
     },
     beforeUnmount() {
         // Revoke the Blob URL to free up memory
@@ -133,6 +140,45 @@ export default {
                 this.program_list.push(this.setProgram(i));
             }
         },
+        changeDevice(ref, toMobile) {
+            if (ref === undefined || ref == null) return;
+            if (ref.classList == undefined || ref.classList == null) return;
+            if (toMobile) {
+                if (ref.classList.contains('computer')) {
+                    ref.classList.remove('computer');
+                    ref.classList.add('mobile');
+                }
+                else {
+                    ref.classList.add('mobile');
+                }
+            }
+            else {
+                if (ref.classList.contains('mobile')) {
+                    ref.classList.remove('mobile');
+                    ref.classList.add('computer');
+                }
+                else {
+                    ref.classList.add('computer');
+                }
+            }
+        },
+        responsiveDisplay() {
+            // Responsive display
+            if (isMobile) {
+                this.$nextTick(() => {
+                    this.changeDevice(this.$refs.concert_page_view, true);
+                    this.changeDevice(this.$refs.concertPosterImg, true);
+                    this.changeDevice(this.$refs.concert_page_poster_img, true);
+                });
+            }
+            else {
+                this.$nextTick(() => {
+                    this.changeDevice(this.$refs.concert_page_view, false);
+                    this.changeDevice(this.$refs.concertPosterImg, false);
+                    this.changeDevice(this.$refs.concert_page_poster_img, false);
+                });
+            }
+        }
     }
 };
 </script>
@@ -140,10 +186,17 @@ export default {
 <style scoped>
 /* Add your custom styles here */
 .concert-page-view {
-    width: 80vw;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+.concert-page-view.desktop {
+    width: 80vw;
+}
+
+.concert-page-view.mobile {
+    width: 90vw;
 }
 
 .concert-page-title {
@@ -153,7 +206,7 @@ export default {
     align-items: center;
     /*font-family: 'Times New Roman', Times, serif;*/
     height: 7.0vh; /* Set height as needed */
-    font-size: 6vh;
+    font-size: min(6vh, 6vw);
     margin-bottom: 3vh;
     margin-left: auto;
     margin-right: auto;
@@ -161,7 +214,6 @@ export default {
 
 
 .concert-page-main-poster-img {
-    max-width: 50vw;
     height: auto;
     margin-left: auto;
     margin-right: auto;
@@ -169,6 +221,14 @@ export default {
     animation: expand 1.5s forwards;
     animation-name: expand;
     animation-duration: 1.5s;
+}
+
+.concert-page-main-poster-img.computer {
+    max-width: 50vw;
+}
+
+.concert-page-main-poster-img.mobile {
+    max-width: 85vw;
 }
 
 @keyframes expand {
@@ -188,7 +248,14 @@ export default {
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+.concert-page-poster-img.compute {
     width: 57vw;
+}
+
+.concert-page-poster-img.mobile {
+    width: 85vw;
 }
 
 .concert-page-poster-caption {

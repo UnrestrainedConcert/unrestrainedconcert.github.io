@@ -16,6 +16,7 @@
 import { defineComponent } from 'vue';
 import HeaderView from './components/public/HeaderView.vue';
 import FooterView from './components/public/FooterView.vue';
+import { isMobile } from './global.js';
 // import { useResizeObserver } from '@vueuse/core';
 
 export default defineComponent({
@@ -32,6 +33,7 @@ export default defineComponent({
   },
   // when the component is mounted onto page (not setup)
   async mounted() {
+    console.log("This windows is " + (isMobile ? "": "NOT") + " mobile");
     window.addEventListener('scroll', this.handleScroll);
     // poll on refs until it is defined, since it only takes a few ticks it is ok to poll.
     while (this.$refs === undefined) {
@@ -59,6 +61,9 @@ export default defineComponent({
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     handleScroll() {
+      if (isMobile) {
+        window.scrollTo(0, window.scrollY);
+      }
       const scrollPosition = window.scrollY;
       let clientHeight = this.$refs.el.clientHeight;
       if (clientHeight === null || clientHeight === undefined) {
@@ -83,7 +88,42 @@ export default defineComponent({
       } else {
         this.$refs.footer.classList.remove('sticky-footer');
       }
-    }
+    },
+    changeDevice(ref, toMobile) {
+        if (ref === undefined || ref == null) return;
+        if (ref.classList == undefined || ref.classList == null) return;
+        if (toMobile) {
+            if (ref.classList.contains('computer')) {
+                ref.classList.remove('computer');
+                ref.classList.add('mobile');
+            }
+            else {
+                ref.classList.add('mobile');
+            }
+        }
+        else {
+            if (ref.classList.contains('mobile')) {
+                ref.classList.remove('mobile');
+                ref.classList.add('computer');
+            }
+            else {
+                ref.classList.add('computer');
+            }
+        }
+    },
+    responsiveDisplay() {
+        // Responsive display
+        if (isMobile) {
+            this.$nextTick(() => {
+                this.changeDevice(this.$refs.el, true);
+            });
+        }
+        else {
+            this.$nextTick(() => {
+                this.changeDevice(this.$refs.el, false);
+            });
+        }
+      }
   },
 });
 </script>
@@ -127,9 +167,14 @@ export default defineComponent({
 }
 
 body {
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+}
+
+body.mobile {
+    width: 10vw;
+    position: fixed;
 }
 
 /* z-index is set large to make it guaranteed to be sticky */
