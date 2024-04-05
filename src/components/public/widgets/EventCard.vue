@@ -2,16 +2,16 @@
     <div v-if="isMobile">
         <div style="height:5vh; width:100vw; clear:both;"></div>
     </div>
-    <div ref="card" class="card hover-scale" @mouseover="isHovered=true" @mouseleave="isHovered=false" @click="navigateToEvent">
+    <div ref="card" class="card hover-scale computer" @mouseover="isHovered=true" @mouseleave="isHovered=false" @click="navigateToEvent">
         <div ref="cardContent" class="card-content computer" :class="{ 'reverse': concertId % 2 === 1 }">
-            <div class="poster">
+            <div ref="cardPoster" class="poster">
                 <img ref="posterImg" :src="posterBlobUrl" alt="Concert Poster" class="card-main-poster" :class="{ 'reverse': concertId % 2 === 1 }"/>
             </div>
             <div ref="cardDetail" class="event-card-detail" :class="{ 'reverse': concertId % 2 === 1}">
                 <div ref="title" class="event-card-title great-vibes-regular" :class="{ 'reverse': concertId % 2 === 1 }">{{ displayTitle }}</div>
-                <div class="event-card-subtitle">{{ displaySubtitle }}</div>
+                <div ref="subtitle" class="event-card-subtitle">{{ displaySubtitle }}</div>
                 <!-- white-space: pre-line allows treating '\n' as new-line. -->
-                <div class="event-card-description noto-serif" style="white-space: pre-line">{{ displayDiscription }}</div>
+                <div ref="description" class="event-card-description noto-serif" style="white-space: pre-line">{{ displayDiscription }}</div>
             </div>
         </div>
     </div>
@@ -95,7 +95,10 @@ export default {
                     this.changeDevice(this.$refs.title, true);
                     this.changeDevice(this.$refs.posterImg, true);
                     this.changeDevice(this.$refs.cardDetail, true);
+                    this.changeDevice(this.$refs.cardPoster, true);
                     this.changeDevice(this.$refs.cardHr, true);
+                    this.changeDevice(this.$refs.subtitle, true);
+                    this.changeDevice(this.$refs.description, true);
                 });
             }
             else {
@@ -109,7 +112,10 @@ export default {
                     this.changeDevice(this.$refs.title, false);
                     this.changeDevice(this.$refs.posterImg, false);
                     this.changeDevice(this.$refs.cardDetail, false);
+                    this.changeDevice(this.$refs.cardPoster, false);
                     this.changeDevice(this.$refs.cardHr, false);
+                    this.changeDevice(this.$refs.subtitle, false);
+                    this.changeDevice(this.$refs.description, false);
                 });
             }
         }
@@ -154,7 +160,7 @@ export default {
     }
 
     .card.mobile {
-        width: 75vw;
+        width: 50vw;
         align-items: center;
         margin-left: auto;
         margin-right: auto;
@@ -183,24 +189,24 @@ export default {
         flex-direction: column;
         margin-top: 1vw;
         margin-bottom: 1vw;
-        margin-left: auto;
-        margin-right: auto;
-        align-items: left;
+        width: 100%;
+        align-items: center;
     }
 
     .card-content.reverse.computer {
         flex-direction: row-reverse;
-        margin: min(2vh, 2vw); /* Responsive margin */
+        margin-top: min(2vh, 2vw); /* Responsive margin */
         align-items: top;
     }
 
+    /* do not flip in mobile */
     .card-content.reverse.mobile {
-        flex-direction: column-reverse;
+        flex-direction: column;
         margin-top: 1vw;
         margin-bottom: 1vw;
         margin-left: auto;
         margin-right: auto;
-        align-items: right;
+        align-items: center;
     }
 
     @keyframes slideInFromLeft {
@@ -241,6 +247,11 @@ export default {
 
     .poster {
         flex: 1;
+    }
+
+    .poster.mobile {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .great-vibes-regular {
@@ -314,21 +325,39 @@ export default {
         font-size: min(2.5vh, 5vw);
         display: flex;
         flex-wrap: wrap; /* Allow items to wrap onto a new line */
-        justify-content: left;
         font-family: 'Times New Roman', Times, serif;
         font-style: italic;
         margin-bottom: 1vh;
+    }
+
+    .event-card-subtitle.computer{
+        justify-content: left;
+    }
+
+    .event-card-subtitle.mobile {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .event-card-description {
         font-size: 2vh;
         display: flex;
         flex-wrap: wrap; /* Allow items to wrap onto a new line */
-        justify-content: left;
         font-family: 'Times New Roman', Times, serif;
         word-wrap: break-word;
         width: auto;
         line-height: 3vh;
+    }
+
+    .event-card-description.computer {
+        justify-content: left;
+    }
+
+    .event-card-description.mobile {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     img {
@@ -362,5 +391,7 @@ export default {
     .separate-line {
         margin-top: 7.5vh;
         margin-bottom: 7.5vh;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>

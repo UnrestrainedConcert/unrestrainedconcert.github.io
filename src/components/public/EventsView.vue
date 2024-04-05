@@ -8,6 +8,7 @@
 
         <div class="events-card-list">
             <EventCard v-for="(concert, index) in upcomingConcerts.concerts"
+                class="events-card"
                 :key="concert.id"
                 :concert="concert"
                 :concertId="index"
@@ -83,13 +84,13 @@ export default {
         justify-content: center;
         display: flex;
         flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .events-card {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .separator{
