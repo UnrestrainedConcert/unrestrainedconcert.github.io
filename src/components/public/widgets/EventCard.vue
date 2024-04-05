@@ -45,15 +45,12 @@ export default {
                 this.$router.push({ name: 'whatson' });
             }
             else {
-                // let concertinfo = await require('@/assets/past/' + this.concert.detailJson + '.json');
-                console.log("push route: concertTitle = " + this.concert.detailJson)
                 this.$router.push({ name: 'event', query: { concertTitle: this.concert.detailJson } });
             }
         }
     },
     async mounted() {
         // Fetch the image file as a Blob
-        console.log(this.lastEvent);
         let path;
         if (this.isUpcoming) {
             path = `/events/upcoming-posters/${this.concert.posterLink}`;
@@ -61,7 +58,6 @@ export default {
         else {
             path = `/events/past-posters/${this.concert.posterLink}`;
         }
-        console.log(path);
         const response = await fetch(path);
         const blob = await response.blob();
         this.posterBlobUrl = URL.createObjectURL(blob);

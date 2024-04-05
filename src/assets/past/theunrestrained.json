@@ -6,13 +6,137 @@
     "TIME_ID": 1,
     "DURATION_ID": 2,
     "LOCATION_ID": 3,
-    "date": "July 23rd, 2022", 
-    "time": "13:00",
-    "duration": "3.5h (2 intm.)",
+    "date": "2022.7.22", 
+    "time": "15:00",
+    "duration": "3 h 30 min (2 intm.)",
     "location": "Zenin Performance Hall, Shanghai",
     "tentative": [false, false, false, false],
     "artists": [],
     "description": "When 'Unrestrained' is officially THE 'Unrestrained'...\nThe whole concert featured chamber music and concerto, with Emma and Roy each delivered a string concerto as the concluding musician of the first and second part. The third segment of concert was astonishing, opened by the moving 'Trout' quintet, following by the virtuous Beethoven Violin Concerto performed by Patricia, and the deep and colorful Prokofiev Piano Concerto No. 2 delivered by Brian as the Grand Finale.",
     "programs_announced": true,
-    "programs": []
+    "programs": [
+        {
+            "composer": "Franz Shubert",
+            "isSingleMvt": true,
+            "work": "Marche Militaire in D major, Op. 51, No. 1",
+            "template": "chamber",
+            "performers": ["Piano I: Grace, Yuhao Liu", "Piano II: Hanqian, Perxi"],
+            "description": ""
+        },
+        {
+            "composer": "Mozart, Rachmaninoff, Lizst, Ryuichi Sakamoto",
+            "isSingleMvt": false,
+            "work": "Excerpts",
+            "template": "excerpts",
+            "movements": ["1. Mozart Piano Sonata K. 279, Mvt. I", "2. Rachmaninoff Prelude in G minor, Op. 23, No. 5", "3. Lizst Liebestraum No. 3", "4. Ryuichi Sakamoto Merry Christmas Mr. Lawrence"],
+            "performers": ["Piano: Yuhao Liu, Yutian Chen, Perxi, Grace"],
+            "description": ""
+        },
+        {
+            "composer": "Sibelius",
+            "isSingleMvt": false,
+            "work": "Violin Concerto in D minor, Op. 47",
+            "template": "chamber",
+            "movements": ["I. Allegro moderato"],
+            "performers": ["Violin: Emma", "Accompaniment: Lindsay"],
+            "description": ""
+        },
+        {
+            "composer": "Lixing Wang",
+            "isSingleMvt": true,
+            "work": "Pine Nuts (Premi\u00e8re)",
+            "template": "chamber",
+            "performers": ["Violin: Patricia", "Piano: Lindsay"],
+            "description": ""
+        },
+        {
+            "composer": "Wanghua Chu, Tchaikovsky, Chopin, Grieg",
+            "isSingleMvt": false,
+            "work": "Excerpts",
+            "template": "excerpts",
+            "movements": ["1. Jasmine Flower Fantasy", "2. Tchaikovsky ???", "3. Chopin Waltz Op. 34, No. 2", "4. Grieg Op. 54, No. 3"],
+            "performers": ["Piano: Hanqian Qian, Lindsay, Yingang Zhu"],
+            "description": ""
+        },
+        {
+            "composer": "J.S. Bach",
+            "isSingleMvt": true,
+            "work": "Cello Suite No. 1 in G major, BWV 1007",
+            "template": "solo",
+            "performers": ["Cello: Qifan Yang"],
+            "description": ""
+        },
+        {
+            "composer": "Shostakovich",
+            "isSingleMvt": false,
+            "work": "Piano Concerto No. 2 in F major, Op. 102",
+            "template": "chamber",
+            "movements": ["II. Andante"],
+            "performers": ["Piano: Qiran Zhang", "Accompaniment: Yingang Zhu"],
+            "description": ""
+        },
+        {
+            "composer": "Joseph Haydn",
+            "isSingleMvt": false,
+            "work": "Cello Concerto No. 1 in C major, Hob. VIIb/1",
+            "template": "chamber",
+            "movements": ["I. Moderato"],
+            "performers": ["Cello: Roy", "Accompaniment: Brian"],
+            "description": ""
+        },
+        {
+            "composer": "R. Strauss",
+            "isSingleMvt": false,
+            "work": "Don Quixote, Op. 35 (Encore)",
+            "template": "encore",
+            "movements": ["X. Finale: Don Quixote's Death"],
+            "performers": ["Cello: Roy", "Accompaniment: Brian"],
+            "description": ""
+        },
+        {
+            "composer": "Schubert",
+            "isSingleMvt": false,
+            "work": "Piano Quintet in A major, D. 667, 'Trout'",
+            "template": "chamber",
+            "movements": ["IV. Theme and Variations"],
+            "performers": ["Violin 1: Emma", "Violin 2: Patricia", "Viola: Yunxiang Zhang", "Cello: Roy", "Piano: Brian"],
+            "description": ""
+        },
+        {
+            "composer": "Beethoven",
+            "isSingleMvt": false,
+            "work": "Violin Concerto in D major, Op. 61",
+            "template": "chamber",
+            "movements": ["I. Allegro ma non troppo"],
+            "performers": ["Violin: Patricia", "Accompaniment: Brian"],
+            "description": ""
+        },
+        {
+            "composer": "Bartok",
+            "isSingleMvt": false,
+            "work": "Romanian Folk Dances, Sz. 56 (Encore)",
+            "template": "encore",
+            "movements": ["I. Joc cu b\u00e2ta", "II. Br\u00e2ul"],
+            "performers": ["Violin: Patricia", "Piano: Brian"],
+            "description": ""
+        },
+        {
+            "composer": "Prokofiev",
+            "isSingleMvt": false,
+            "work": "Piano Concerto No. 2 in G minor, Op. 16",
+            "template": "chamber",
+            "movements": ["I. Andantino", "II. Scherzo: Vivace", "III. Intermezzo: Allegro moderato", "IV. Finale: Allegro tempestoso"],
+            "performers": ["Piano: Brian", "Accompaniment: Qiran Zhang, Gaspard, Yiran Chi"],
+            "description": ""
+        },
+        {
+            "composer": "Shumann",
+            "isSingleMvt": false,
+            "work": "Kinderszenen, Op. 15 (Encore)",
+            "template": "encore",
+            "movements": ["VII. Tr\u00e4umerei"],
+            "performers": ["Piano: Brian"],
+            "description": ""
+        }
+    ]
 }

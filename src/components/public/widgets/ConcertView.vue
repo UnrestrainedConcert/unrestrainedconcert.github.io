@@ -14,12 +14,7 @@
                 <ArticleView :article_title="'Programs'" :article_contents="'Programs will be announced in ' + concert.programs_announce_date.toString()" :article_layer="0"/>
             </div>
             <div class="concert-page-program-article" v-else>
-                <ArticleView :article_title="'Programs'" :article_contents="program_list" :article_layer="0"/>
-                <!-- <li v-for="program in concert.programs" :key="program.title">
-                    <h3>{{ program.title }}</h3>
-                    <p>Composer: {{ program.composer }}</p>
-                    <p>Duration: {{ program.duration }}</p>
-                </li> -->
+                <ArticleView :article_title="'Programs'" :article_contents="program_list" :article_layer="0" :layer_hidden="1"/>
             </div>
             <!-- Schedule -->
             <div class="concert-page-schedule-article">
@@ -73,19 +68,16 @@ export default {
             concert: null,
         };
     },
-    async mounted() {
-        // Fetch the image file as a Blob
-    },
     beforeUnmount() {
         // Revoke the Blob URL to free up memory
         URL.revokeObjectURL(this.posterBlobUrl);
     },
     methods: {
         async setConcertInfo(concert) {
-            console.log("setConcertInfo")
             this.concert = concert;
             await this.setPosterBlobUrl();
             this.setIsReady();
+            if (this.concert.programs_announced) this.setProgramList();
         },
         async setPosterBlobUrl() {
             const path = `/details/upcoming/${this.concert.posterLink}`;
@@ -96,6 +88,51 @@ export default {
         setIsReady() {
             this.isReady = true;
         }, 
+
+        /** 
+         * composer (string), 
+         * isSingleMvt (boolean), 
+         * work (string), 
+         * movements (list of strings, may contain only 1 element), 
+         * template (string, options: solo, chamber, concerto, symphony), 
+         * performers (list of strings, rule by template), 
+         * description (string)
+         */
+        setProgram(id) {
+            let subprogram = this.concert.programs[id];
+            let work_subcontent;
+            if (subprogram.isSingleMvt) {
+                if (subprogram.movements === undefined)
+                    work_subcontent = "";
+                else
+                    work_subcontent = subprogram.movements;
+                work_subcontent = subprogram.movements;
+            } else {
+                work_subcontent = subprogram.movements.join("\n");
+            }
+            let work_subarticle = {
+                article_title: "Movements",
+                article_contents: work_subcontent
+            };
+            let performer_subarticle = {
+                article_title: "Performers",
+                article_contents: subprogram.performers.join("; ")
+            };
+            let description_subarticle = {
+                article_title: "Description",
+                article_contents: subprogram.description
+            };
+            let article_title = subprogram.composer + ": " + subprogram.work;
+            return {
+                article_title: article_title,
+                article_contents: [work_subarticle, performer_subarticle, description_subarticle]
+            }
+        },
+        setProgramList() {
+            for (let i = 0; i < this.concert.programs.length; i++) {
+                this.program_list.push(this.setProgram(i));
+            }
+        },
     }
 };
 </script>
@@ -115,8 +152,8 @@ export default {
     justify-content: center;
     align-items: center;
     /*font-family: 'Times New Roman', Times, serif;*/
-    height: 6vh; /* Set height as needed */
-    font-size: 5vh;
+    height: 7.0vh; /* Set height as needed */
+    font-size: 6vh;
     margin-bottom: 3vh;
     margin-left: auto;
     margin-right: auto;

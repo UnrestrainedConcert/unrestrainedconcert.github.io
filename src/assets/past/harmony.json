@@ -6,18 +6,50 @@
     "TIME_ID": 1,
     "DURATION_ID": 2,
     "LOCATION_ID": 3,
-    "date": "June 25th, 2021", 
+    "date": "2021.6.25", 
     "time": "13:30",
-    "duration": "90' (1 intm.)",
+    "duration": "1 h 30 min (1 intm.)",
     "location": "WFLA Piano Corner, Shanghai",
     "tentative": [false, false, false, false],
     "artists": [],
     "description": "A concert that starts the whole story of URFO ......\nURFO Founder Brian planned this concert with music from C.P.E. Bach, Mendelssohn, Rachmaninoff and Chopin. The concert was opened by C.P.E. Bach's Flute Concerto, performed by guest flutists William and Jiayi Ye, accompanied by guest violinists Amy and Ziyin Lin. Then, violinist Patricia proceeded the concert with a moving performance of Mendelssohn's Violin Concerto in e minor, accompanied by Mr. Zhu. After a short intermission, the concert continues with Rachmaninoff's famous Piano Concerto No.2, performed by pianist Lindsay and was finally concluded by Brian giving a virtuoso yet rich-textured Chopin's Piano Concerto No.1.",
     "programs_announced": true,
     "programs": [
-        "C.P.E. Bach: Double Concerto in E-flat Major, Wq. 47",
-        "Mendelssohn: Violin Concerto No.2 in e minor, Mvt. I, Op.64",
-        "Rachmaninoff: Piano Concerto No.2 in c minor, Mvt. I & II, Op.18",
-        "F.F. Chopin: Piano Concerto No.1 in e minor, All Mvts, Op.11"
+        {
+            "composer": "C.P.E. Bach",
+            "isSingleMvt": false,
+            "work": "Flute Concerto in D minor, H. 426, Wq. 22",
+            "movements": ["III. Allegro di molto"],
+            "template": "chamber",
+            "performers": ["Flute: William, Jiayi Ye", "Violin: Amy, Ziyin Lin"],
+            "description": "A concerto for flute solo, and accompanied by a string orchestra, arranged for two flutes and two violins. A lively and joyful piece by an important composer in the transition from Baroque to Classical period."
+        },
+        {
+            "composer": "Mendelssohn",
+            "isSingleMvt": false,
+            "work": "Violin Concerto No.2 in e minor, Op.64",
+            "movements": ["I. Allegro molto appassionato"],
+            "template": "chamber",
+            "performers": ["Violin: Patricia", "Accompaniment: Yingang Zhu"],
+            "description": "A concerto for violin solo, and accompanied by a piano. A piece that is full of emotions and virtuosity, and is one of the most famous violin concertos in the Romantic period."
+        },
+        {
+            "composer": "Rachmaninoff",
+            "isSingleMvt": false,
+            "work": "Piano Concerto No.2 in c minor, Op.18",
+            "movements": ["I. Moderato", "II. Adagio sostenuto"],
+            "template": "chamber",
+            "performers": ["Piano: Lindsay", "Accompaniment: Brian"],
+            "description": "A concerto for piano solo, and accompanied by the second piano. A piece that is full of emotions and virtuosity, and is one of the most famous piano concertos in the Romantic period."
+        },
+        {
+            "composer": "F.F. Chopin",
+            "isSingleMvt": false,
+            "work": "Piano Concerto No.1 in e minor, Op.11",
+            "movements": ["I. Allegro maestoso", "II. Romance: Larghetto", "III. Rondo: Vivace"],
+            "template": "chamber",
+            "performers": ["Piano: Brian", "Accompaniment: Lindsay"],
+            "description": "A concerto for piano solo, and accompanied by the second piano. A piece that is full of emotions and virtuosity, and is one of the most famous piano concertos in the Romantic period."
+        }
     ]
 }

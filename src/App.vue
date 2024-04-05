@@ -81,7 +81,6 @@ export default defineComponent({
       if (this.elheight < window.innerHeight) {
         this.$refs.footer.classList.add('sticky-footer');
       } else {
-        console.log("footer is not sticky");
         this.$refs.footer.classList.remove('sticky-footer');
       }
     }

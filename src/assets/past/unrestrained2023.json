@@ -6,18 +6,58 @@
     "TIME_ID": 1,
     "DURATION_ID": 2,
     "LOCATION_ID": 3,
-    "date": "Aug 16th, 2023", 
+    "date": "2023.8.16", 
     "time": "15:00",
-    "duration": "2h (1 intm.)",
-    "location": "WFLA Piano Corner, Shanghai",
+    "duration": "2 h (1 intm.)",
+    "location": "Zenin Salon, Shanghai",
     "tentative": [false, false, false, false],
     "artists": [],
     "description": "Here comes the predecessor of Unrestrained Festival Orchestra and marks the beginning of Unrestrained Summer Festival!\nLindsay performed Scriabin's Piano Concerto and Emma brought Scottish Sceneries to live through her interpretation of Bruch's Scottish Fantasy. Brian, music director of URFO, led the world premiere of Alfred's 'Escapade of the Busters', and conducted Haydn's Piano Concerto No. 11 played by himself as well as the Elgar Cello Concerto with Roy as the soloist, where Roy demonstrated his deep understanding of this concerto in all movements.",
     "programs_announced": true,
     "programs": [
-        "C.P.E. Bach: Double Concerto in E-flat Major, Wq. 47",
-        "Mendelssohn: Violin Concerto No.2 in e minor, Mvt. I, Op.64",
-        "Rachmaninoff: Piano Concerto No.2 in c minor, Mvt. I & II, Op.18",
-        "F.F. Chopin: Piano Concerto No.1 in e minor, All Mvts, Op.11"
+        {
+            "composer": "Alfred Ni",
+            "isSingleMvt": true,
+            "work": "Concert Overture - Escapade of the Busters",
+            "template": "symphony",
+            "performers": [],
+            "description": ""
+        },
+        {
+            "composer": "Alexander Scriabin",
+            "isSingleMvt": false,
+            "work": "Piano Concerto in F-sharp minor, Op. 20",
+            "template": "chamber",
+            "movements": ["II. Andante"],
+            "performers": ["Piano: Lindsay", "Accompaniment: Brian"],
+            "description": ""
+        },
+        {
+            "composer": "Max Bruch",
+            "isSingleMvt": false,
+            "work": "Scottish Fantasy, Op. 46",
+            "template": "concerto",
+            "movements": ["I. Introduction: Grave, Adagio cantabile", "II. Scherzo: Allegro", "III. Andante sostenuto", "IV. Finale: Allegro guerriero"],
+            "performers": ["Violin: Emma", "Accompaniment: Brian"],
+            "description": ""
+        },
+        {
+            "composer": "Joseph Haydn",
+            "isSingleMvt": false,
+            "work": "Piano Concerto No. 11 in D major, Hob. XVIII/11",
+            "template": "concerto",
+            "movements": ["I. Vivace", "II. Un poco adagio", "III. Rondo all'Ungarese"],
+            "performers": ["Solo Piano: Brian"],
+            "description": ""
+        },
+        {
+            "composer": "Edward Elgar",
+            "isSingleMvt": false,
+            "work": "Cello Concerto in E minor, Op. 85",
+            "template": "concerto",
+            "movements": ["I. Adagio - Moderato", "II. Lento - Allegro molto", "III. Adagio", "IV. Allegro - Moderato - Allegro, ma non troppo"],
+            "performers": ["Solo Cello: Roy"],
+            "description": ""
+        }
     ]
 }
