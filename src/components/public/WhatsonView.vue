@@ -1,12 +1,13 @@
 <template>
     <div class="whatson-view">
-        <div class="whatson-page-title">What's on next</div>
-        <ConcertView ref="concertview" class="whatson-concert"/>
+        <div class="whatson-page-title" :class="{'mobile': isMobile}">What's on next</div>
+        <ConcertView ref="concertview" class="whatson-concert" :isUpcoming="true"/>
         <div style="height:20vh; width:100vw; clear:both;"></div>
     </div>
 </template>
 
 <script>
+import { isMobile } from '@/global.js';
 import ConcertView from './widgets/ConcertView.vue';
 import concertinfo from '@/assets/upcoming/upcoming.json';
 export default {
@@ -17,12 +18,16 @@ export default {
     },
     data() {
         return {
-            concertinfo
+            concertinfo,
+            isMobile: isMobile
         };
     },
     mounted() {
         this.$nextTick(() => {
             this.$refs.concertview.setConcertInfo(this.concertinfo);
+        });
+        this.$watch(() => isMobile, (newVal) => {
+            this.isMobile = newVal;
         });
     }
 }
@@ -45,6 +50,10 @@ export default {
     height: 3vh; /* Set height as needed */
     font-size: min(2vh, 2vw);
     margin-top: 3vh;
+}
+
+.whatson-page-title.mobile {
+    margin-bottom: 3vh;
 }
 
 .whatson-concert {

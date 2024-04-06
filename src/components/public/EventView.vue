@@ -72,8 +72,8 @@ export default {
                 "Why did the UNRESTRAINED 2024 musician break up with his metronome?\nHe couldn't stand the constant ticking!",
                 "Why did UNRESTRAINED 2024's concert hall refuse to sell tickets?\nThey were afraid the audience would 'harmonize' too loudly!",
                 "You think I will put the secure-page password here?\nYEY! The password is ...\nJkL4&$rT7#nBhY9*oPqW1!mKl3@zXcV5^dE\nrF6%gU8(iO2)jAsDfGhJkL4&$rT7#nBhY9*oPqW1!mKl3@zXcV5^dErF6%gU8(iO2)jAsDfGhJkL4&$rT7#nBhY9\n*oPqW1!mKl3@zXcV5^dErF6%gU8(iO2)jAsDfGhJkL4&$rT7#nBhY9*oPqW1!mKl3@zXcV5^dErF6%gU8(\niO2)jAsDfGh\nWhat are the rest??\nOh! I forgot! :(",
+                "Do you know why the UNRESTRAINED 2024 musicians are so good at playing?\nThey never UNRESTRAIN themselves!",
                 "Oh! You wanna join as a musician?\nContact hellobrian18@gmail.com*new-line*This time not a joke!\n(Oh By the way*new-line*UNRESTRAINED 2024 is coming soon!)\n",
-                "Do you know why the UNRESTRAINED 2024 musicians are so good at playing?\nThey neve UNRESTRAIN themselves!",
             ];
             // make the hire non-joke more frequent
             if (Math.random() < 0.2) {

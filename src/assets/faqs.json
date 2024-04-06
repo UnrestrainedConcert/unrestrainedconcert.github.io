@@ -1,0 +1,44 @@
+{
+    "faqs": [
+        {
+            "question": "How long does the concert last?",
+            "answer": "This depends on the specific event you will be attending. You can always check the event page for more information, or contact us directly. Generally, concerts last about 2 hours with a 10-minute intermission."
+        },
+        {
+            "question": "Where does the concert take place?",
+            "answer": "Since we are an amateur orchestra, we may perform in different venues. You can always check the event page for more information, or contact us directly. UNRESTRAINED 2024 takes place at SHCM (Shanghai Conservatory of Music) Opera House Rehearsal Hall unless otherwise noted."
+        },
+        {
+            "question": "Is the concert for free or do I need to buy a ticket?",
+            "answer": "This depends on the specific event you will be attending. You can always check the event page for more information, or contact us directly."
+        },
+        {
+            "question": "What if I am late to the concert?",
+            "answer": "We recommend that you arrive at least 30 minutes before the concert starts, there may also be a pre-concert talk which you may not want to miss. We will do our best to accommodate latecomers, but we may not be able to seat you until a suitable break in the performance, usually after a piece has been completely performed, which includes all the movements, if applicable."
+        },
+        {
+            "question": "Can I take photos, videos, or record during the concert?",
+            "answer": "For UNRESTRAINED 2024, we strictly prohibit any kind of photography or videograpy during the concert, unless you sit in the last row of the hall of either first or second floor. We allow audio recording for personal use only for this concert only. However, you are welcomed to take any photos or videos before or after the concert, during the intermission(s), or after the performance of a piece. Please be respectful of the performers and other audience members. If you disobey the rules, you may be asked to leave the concert."
+        },
+        {
+            "question": "What if I am new to classical music?",
+            "answer": "That's great! We welcome everyone, regardless of their level of experience with classical music. Our concerts are designed to be enjoyable for both newcomers and seasoned classical music enthusiasts. You may check the program notes for a brief introduction of all the pieces to be performed. Although not guaranteed, we may hold a pre-concert talk to introduce the program and the composers."
+        },
+        {
+            "question": "When should I applaud during the concert?",
+            "answer": "Applause is a way to show your appreciation for the performers. In general, it is customary to applaud at the end of a piece, after the conductor has lowered his baton and the performers have lowered their instruments. Note that it has become a tradition to hold your applause until the end of a multi-movement piece, such as a symphony or a concerto. If you are unsure when to applaud, you can always follow the lead of the rest of the audience."
+        },
+        {
+            "question": "What if I need to leave the concert early?",
+            "answer": "We recommend that you stay for the entire concert, but we understand that sometimes you may need to leave early. If you need to leave during the performance, please do so quietly and wait until a suitable break in the performance. If you need to leave during the intermission, you may do so at any time."
+        },
+        {
+            "question": "What is the dress code for the concert?",
+            "answer": "There is no specific dress code for the concert. You can wear whatever you feel comfortable in. However, a concert night is a great opportunity to dress up and have a good time. Still, we strictly prohibit any kind of inappropriate clothing, including but not limited to: slippers, vest, and so on."
+        },
+        {
+            "question": "Is there an age restriction for the concert?",
+            "answer": "We welcome children with age 10 or above. But everyone should follow the ticket policy as well as other rules and regulations."
+        }
+    ]
+}

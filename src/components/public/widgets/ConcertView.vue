@@ -3,7 +3,7 @@
         <div class="concert-page-title great-vibes-regular">{{ concert.title }}</div>
         <div class="concert-page-poster">
             <div ref="concert_page_poster_img" class="concert-page-poster-img"><img :src="posterBlobUrl" alt="Concert Poster" ref="concert_page_main_poster" class="concert-page-main-poster-img computer"/></div>
-            <div class="concert-page-poster-caption">{{ concert.posterCaption }}</div>
+            <div ref="concert_page_poster_caption" class="concert-page-poster-caption computer">{{ concert.posterCaption }}</div>
         </div>
         <div class="concert-page-overview-article">
             <ArticleView :article_title="'Overview'" :article_contents="concert.description" :article_layer="0"/>
@@ -60,13 +60,19 @@ export default {
     components: {
         ArticleView, ScheduleView
     },
+    props: {
+        isUpcoming: {
+            type: Boolean,
+            default: false
+        },
+    },
     data() {
         return {
             posterBlobUrl: '',
             program_list: [],
             musicians_list: [],
             isReady: false,
-            concert: null,
+            concert: null
         };
     },
     mounted() {
@@ -87,7 +93,9 @@ export default {
             if (this.concert.programs_announced) this.setProgramList();
         },
         async setPosterBlobUrl() {
-            const path = `/details/upcoming/${this.concert.posterLink}`;
+            let path = ``;
+            if (this.isUpcoming) path = `/details/upcoming/${this.concert.posterLink}`;
+            else path = `/details/past/${this.concert.posterLink}`;
             const response = await fetch(path);
             const blob = await response.blob();
             this.posterBlobUrl = URL.createObjectURL(blob);
@@ -167,15 +175,17 @@ export default {
             if (isMobile) {
                 this.$nextTick(() => {
                     this.changeDevice(this.$refs.concert_page_view, true);
-                    this.changeDevice(this.$refs.concertPosterImg, true);
+                    this.changeDevice(this.$refs.concert_page_main_poster, true);
                     this.changeDevice(this.$refs.concert_page_poster_img, true);
+                    this.changeDevice(this.$refs.concert_page_poster_caption, true);
                 });
             }
             else {
                 this.$nextTick(() => {
                     this.changeDevice(this.$refs.concert_page_view, false);
-                    this.changeDevice(this.$refs.concertPosterImg, false);
+                    this.changeDevice(this.$refs.concert_page_main_poster, false);
                     this.changeDevice(this.$refs.concert_page_poster_img, false);
+                    this.changeDevice(this.$refs.concert_page_poster_caption, false);
                 });
             }
         }
@@ -189,6 +199,7 @@ export default {
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    width: 80vw;
 }
 
 .concert-page-view.desktop {
@@ -196,7 +207,7 @@ export default {
 }
 
 .concert-page-view.mobile {
-    width: 90vw;
+    width: 100vw;
 }
 
 .concert-page-title {
@@ -210,6 +221,10 @@ export default {
     margin-bottom: 3vh;
     margin-left: auto;
     margin-right: auto;
+}
+
+.concert-page-title.mobile {
+    margin-top: 1vh;
 }
 
 
@@ -241,6 +256,11 @@ export default {
   }
 }
 
+.concert-page-poster.mobile {
+    display: flex;
+    flex-direction: column;
+}
+
 .concert-page-poster-img {
     display: flex;
     flex-direction: row;
@@ -256,6 +276,7 @@ export default {
 
 .concert-page-poster-img.mobile {
     width: 85vw;
+    margin-bottom: 3vh;
 }
 
 .concert-page-poster-caption {
@@ -266,10 +287,17 @@ export default {
     font-family: 'Times New Roman', Times, serif;
     height: 3vh; /* Set height as needed */
     font-size: 2vh;
-    margin-top: 1vh;
     width: 57vw;
     margin-left: auto;
     margin-right: auto;
+}
+
+.concert-page-poster-caption.computer {
+    margin-top: 1vh;
+}
+
+.concert-page-poster-caption.mobile {
+    margin-top: 3vh;
 }
 
 .concert-page-articles {
