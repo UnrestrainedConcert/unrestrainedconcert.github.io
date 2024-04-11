@@ -12,6 +12,7 @@ import ContactView  from    './components/public/ContactView.vue';
 import LibraryView  from    './components/public/LibraryView.vue';
 import SecureView   from    './components/public/SecureView.vue';
 import EventView    from    './components/public/EventView.vue';
+import PeoplePage   from    './components/public/people/PeoplePage.vue';
 
 const public_routes = [
     { path: '/',            component: HomeView     , name: 'home'}, 
@@ -26,6 +27,10 @@ const public_routes = [
     { path: '/event',       component: EventView   ,  name: 'event', 
                             props: route => ({
                                 concertTitle: route.query.concertTitle
+                            }) },
+    { path: '/people',      component: PeoplePage   , name: 'people',
+                            props: route => ({
+                                person: route.query.person
                             }) },
     { path: '/:pathMatch(.*)*', redirect: { name: 'home' } }
 ];

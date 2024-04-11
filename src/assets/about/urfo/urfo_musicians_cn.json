@@ -1,0 +1,35 @@
+[
+    {
+      "section": "Strings",
+      "subsections": [
+        {
+          "title": "First Violins",
+          "musicians": [
+            { "name": "王兰歆", "role": "Concertmaster" },
+            { "name": "朱伊嘉", "role": "Associate Concertmaster" },
+            { "name": "何谐锦", "role": "Associate Concertmaster" },
+            { "name": "谢天钧" },
+            { "name": "顾昕瑶" },
+            { "name": "李沐瑶"},
+            { "name": "沈逸雯"},
+            { "name": "陈米妮" },
+            { "name": "许子辰"}
+          ]
+        },
+        {
+          "title": "Second Violins",
+          "musicians": [
+            { "name": "陈怡榛", "notation": "8" },
+            { "name": "郭广宇", "notation": "♢" },
+            { "name": "盛熙仪" },
+            { "name": "邱家蕾" },
+            { "name": "杨若晞" },
+            { "name": "丁思予" },
+            { "name": "傅思溢" },
+            { "name": "钱之宜" }
+          ]
+        }
+      ]
+    }
+  ]
+  

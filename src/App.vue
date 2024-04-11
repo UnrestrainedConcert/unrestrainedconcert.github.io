@@ -1,12 +1,12 @@
 <template>
-  <div id="app" ref="el">
+  <div id="app" ref="el" @wheel="handleWheel">
     <div ref="header" class="header" @click="scrollToTop" :style="{ opacity: headerOpacity }">
-      <HeaderView class="header-view"/>
+      <HeaderView class="header-view" ref="headerView" :state="headerState"/>
     </div>
     <div class="router-content">
-      <router-view/>
+      <router-view @headerState="handleHeaderState" :scrollValue="scrollValue"/>
     </div>
-    <div ref="footer" class="footer">
+    <div ref="footer" class="footer" v-if="headerState != 10">
       <FooterView/>
     </div>
   </div>
@@ -28,7 +28,9 @@ export default defineComponent({
     return {
       headerOpacity: 1,
       elheight: 0,
-      isSecureTab: false  // when secure, elheight should be changed manually
+      isSecureTab: false,  // when secure, elheight should be changed manually
+      headerState: 0,
+      scrollValue: 0,
     }
   },
   // when the component is mounted onto page (not setup)
@@ -60,7 +62,27 @@ export default defineComponent({
     scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
+    handleWheel(event) {
+      if (this.headerState == 10) {
+        event.preventDefault();
+        this.scrollValue += event.deltaY; //Math.max(Math.min(event.deltaY, 100), -100);
+        this.scrollValue = Math.min(Math.max(0, this.scrollValue), 2000);
+      }
+    },
+    handleHeaderState(state) {
+      this.headerState = state;
+      console.log('App received and emitted headerState ' + state.toString() + ' to HeaderView');
+      if (state == 10) {
+        window.removeEventListener('scroll', this.handleScroll);
+      }
+      else if (state == 0) {
+        window.addEventListener('scroll', this.handleScroll);
+      }
+    },
     handleScroll() {
+      if (this.headerState == 10) {
+        return;
+      }
       if (isMobile) {
         window.scrollTo(0, window.scrollY);
       }

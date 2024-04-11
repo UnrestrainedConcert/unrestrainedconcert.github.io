@@ -12,11 +12,11 @@
     "location": "Zenin Salon, Shanghai",
     "tentative": [false, false, false, false],
     "artists": [],
-    "description": "Here comes the predecessor of Unrestrained Festival Orchestra and marks the beginning of Unrestrained Summer Festival!\nLindsay performed Scriabin's Piano Concerto and Emma brought Scottish Sceneries to live through her interpretation of Bruch's Scottish Fantasy. Brian, music director of URFO, led the world premiere of Alfred's 'Escapade of the Busters', and conducted Haydn's Piano Concerto No. 11 played by himself as well as the Elgar Cello Concerto with Roy as the soloist, where Roy demonstrated his deep understanding of this concerto in all movements.",
+    "description": "Here comes the predecessor of Unrestrained Festival Orchestra and marks the beginning of Unrestrained Summer Festival!\nLindsay performed Scriabin's Piano Concerto and Emma brought Scottish Sceneries to live through her interpretation of Bruch's Scottish Fantasy. Brian, music director of URFO, led the world premiere of URFO mysterious composer-in-residence (Composer-M)'s 'Escapade of the Busters', and conducted Haydn's Piano Concerto No. 11 played by himself as well as the Elgar Cello Concerto with Roy as the soloist, where Roy demonstrated his deep understanding of this concerto in all movements.",
     "programs_announced": true,
     "programs": [
         {
-            "composer": "Alfred Ni",
+            "composer": "Composer M",
             "isSingleMvt": true,
             "work": "Concert Overture - Escapade of the Busters",
             "template": "symphony",

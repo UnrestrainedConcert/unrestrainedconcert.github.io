@@ -1,6 +1,7 @@
 <template>
-    <header v-if="!isMobile" class="desktop">
-      <div class="header-content" @click="clickedIndex=-1">
+    <header v-if="(headerState % 10) == 0" class="desktop">
+      <div v-if="headerState == headerStates.NORMAL" class="normal_desktop">
+        <div class="header-content" @click="clickedIndex=-1">
           <router-link to="/" class="orchestra-content">
             <div class="orchestra-content">
                 <img src="../../assets/URFO_logo.png" alt="URFO Logo" class="logo">
@@ -14,52 +15,99 @@
           <div class="year lobster-regular">
             <div class="urfo-orange">2024</div>.<div class="urfo-red">8</div>
           </div>
-      </div>
-      <div class="separate-line desktop">
+        </div>
+        <div class="separate-line desktop">
           <hr class="line-between">
-      </div>
-      <div class="nav-container">
-        <nav>
-            <ul class="left">
+        </div>
+        <div class="nav-container normal">
+          <nav class="normal">
+              <ul class="left">
+                <li 
+                  v-for="(item, index) in headerItems.normal.left" 
+                  :key="index*2+1"
+                  @mouseover="headerItemEnhover($event)" 
+                  @mouseout="headerItemDehover($event)"
+                  @click="clickedIndex = index*2+1"
+                  class="item-left"
+                  :class="{
+                    'last': index === headerItems.normal.left.length - 1,
+                    // 'current': clickedIndex === index*2+1,
+                    // 'protest-guerrilla-regular': clickedIndex === index*2+1
+                  }">    <!-- last item does not have right margin -->
+                  <router-link :to="item.to">{{ item.label }}</router-link>
+                  <!--<a href="#">{{ item }}</a>-->
+                </li>
+              </ul>
+          </nav>
+          <nav class="normal">
+            <ul class="right">
               <li 
-                v-for="(item, index) in leftHeaderItems" 
-                :key="index*2+1"
+                v-for="(item, index) in headerItems.normal.right" 
+                :key="index" 
                 @mouseover="headerItemEnhover($event)" 
                 @mouseout="headerItemDehover($event)"
-                @click="clickedIndex = index*2+1"
-                class="item-left"
+                @click="clickedIndex = index*2"
+                class="item-right"
                 :class="{
-                  'last': index === leftHeaderItems.length - 1,
-                  // 'current': clickedIndex === index*2+1,
-                  // 'protest-guerrilla-regular': clickedIndex === index*2+1
+                  'last': index === headerItems.normal.right.length - 1,
+                  // 'current': clickedIndex === index*2,
+                  // 'protest-guerrilla-regular': clickedIndex === index*2
                 }">    <!-- last item does not have right margin -->
                 <router-link :to="item.to">{{ item.label }}</router-link>
                 <!--<a href="#">{{ item }}</a>-->
               </li>
             </ul>
-        </nav>
-        <nav>
-          <ul class="right">
-            <li 
-              v-for="(item, index) in rightHeaderItems" 
-              :key="index" 
-              @mouseover="headerItemEnhover($event)" 
-              @mouseout="headerItemDehover($event)"
-              @click="clickedIndex = index*2"
-              class="item-right"
-              :class="{
-                'last': index === rightHeaderItems.length - 1,
-                // 'current': clickedIndex === index*2,
-                // 'protest-guerrilla-regular': clickedIndex === index*2
-              }">    <!-- last item does not have right margin -->
-              <router-link :to="item.to">{{ item.label }}</router-link>
-              <!--<a href="#">{{ item }}</a>-->
-            </li>
-          </ul>
-        </nav>
+          </nav>
+        </div>
+      </div>
+      <div v-else-if="headerState == headerStates.PEOPLE_BRIAN" class="brian_header">
+        <div class="nav-container brian">
+          <nav class="brian">
+              <ul class="left brian">
+                <li 
+                  v-for="(item, index) in headerItems.brian.left" 
+                  :key="index"
+                  @mouseover="headerItemEnhover($event)" 
+                  @mouseout="headerItemDehover($event)"
+                  @click="clickedIndex = index"
+                  class="item-left"
+                  :class="{
+                    'last': index === headerItems.brian.left.length - 1,
+                  }">    <!-- last item does not have right margin -->
+                  <router-link :to="item.to">{{ item.label }}</router-link>
+                </li>
+              </ul>
+          </nav>
+          <div class="brian_header_center">
+            <div class="brian_header_title">
+              BRIAN GUO
+            </div>
+            <div class="brian_header_subtitle">
+              URFO Music Director
+            </div>
+          </div>
+          <nav class="brian">
+              <ul class="right brian">
+                <li 
+                  v-for="(item, index) in headerItems.brian.right" 
+                  :key="index"
+                  @mouseover="headerItemEnhover($event)" 
+                  @mouseout="headerItemDehover($event)"
+                  @click="clickedIndex = index"
+                  class="item-left"
+                  :class="{
+                    'last': index === headerItems.brian.right.length - 1,
+                  }">    <!-- last item does not have right margin -->
+                  <router-link :to="item.to" v-if="!item.isExternal">{{ item.label }}</router-link>
+                  <a :href="item.to" v-else>{{ item.label }}</a>
+                  <!--<a href="#">{{ item }}</a>-->
+                </li>
+              </ul>
+          </nav>
+        </div>
       </div>
     </header>
-    <header v-else class="mobile">
+    <header v-else-if="(headerState % 10) == mobileAppend" class="mobile">
       <div class="mobile-header-top">
         <button class="menu-button" @click="toggleDropdown">
           <img class="icon-img" src="@/assets/icons/menu-svgrepo-com.svg" alt="Menu Icon" />
@@ -68,59 +116,96 @@
           <span class="big-oname" v-show="!showDropdown">URFO</span>
           <span class="small-oname" v-show="showDropdown">Unrestrained Festival Orchestra</span></div>
       </div>
-      <div class="nav-container" v-show="showDropdown">
+      <div class="nav-container normal" v-show="showDropdown">
         <!-- Left navigation items -->
         <!-- Right navigation items -->
-        <nav v-if="isMobile">
+        <nav class="normal">
         <ul class="dropdown-menu" v-show="showDropdown">
-          <li @click="toggleDropdown" class="dropdown-item" v-for="(item, index) in dropdownHeaderItems" :key="index" v-show="showDropdown">
+          <li @click="toggleDropdown" class="dropdown-item" v-for="(item, index) in headerItems.dropdown" :key="index" v-show="showDropdown">
             <router-link :to="item.to">{{ item.label }}</router-link>
           </li>
         </ul>
       </nav>
       </div>
     </header>
-    <div style="height:6vh; width:100vw; clear:both;" v-if="isMobile"></div>
+    <div style="height:6vh; width:100vw; clear:both;" v-if="(headerState % 10) == mobileAppend"></div>
   </template>
   
   <script>
   import { isMobile } from '@/global.js';
   export default {
     name: 'HeaderView',
+    props: {
+      state: Number
+    },
     data() {
       return {
         // to add more tabs, edit here:
-        leftHeaderItems: [
-          { label: 'What\'s on', to: '/whatson' },
-          { label: 'About', to: '/about' },
-          { label: 'Events', to: '/events' },
-          { label: 'Support', to: '/support' },
-          { label: 'FAQ', to: '/faq' }
-        ],
-        rightHeaderItems: [
-          { label: 'Contact', to: '/contact' },
-          { label: 'Library', to: '/library' },
-          { label: 'Secure', to: '/secret' }
-        ],
-        dropdownHeaderItems: [
-          { label: 'What\'s on', to: '/whatson' },
-          { label: 'About', to: '/about' },
-          { label: 'Events', to: '/events' },
-          { label: 'Support', to: '/support' },
-          { label: 'FAQ', to: '/faq' },
-          { label: 'Contact', to: '/contact' },
-          { label: 'Library', to: '/library' },
-          { label: 'Secure', to: '/secret' }
-        ],
+        headerItems: {
+          normal: {
+            left: [
+              { label: 'What\'s on', to: '/whatson' },
+              { label: 'About', to: '/about' },
+              { label: 'Events', to: '/events' },
+              { label: 'Support', to: '/support' },
+              { label: 'FAQ', to: '/faq' }
+            ],
+            right: [
+              { label: 'Contact', to: '/contact' },
+              { label: 'Library', to: '/library' },
+              { label: 'Secure', to: '/secret' }
+            ],
+          },
+          dropdown: [
+            { label: 'What\'s on', to: '/whatson' },
+            { label: 'About', to: '/about' },
+            { label: 'Events', to: '/events' },
+            { label: 'Support', to: '/support' },
+            { label: 'FAQ', to: '/faq' },
+            { label: 'Contact', to: '/contact' },
+            { label: 'Library', to: '/library' },
+            { label: 'Secure', to: '/secret' }
+          ],
+          brian: {
+            left: [
+              { label: 'Back to About', to: '/about' },
+              { label: 'Back to Home', to: '/'}
+            ],
+            right: [
+              { label: 'Listen', to: ''},
+              { label: 'Contact', to: ''},
+              // more about me => link to my personal website using https://etwilight.github.io
+              { label: 'More about me', to: 'https://etwilight.github.io', isExternal: true}
+            ],
+          }
+        },
         clickedIndex: -1,
         isMobile: isMobile,
         showDropdown: false,
+        mobileAppend: 5,  // append this to the headerState when mobile, remove when desktop
+        headerStates: {
+          NORMAL: 0,
+          PEOPLE_BRIAN: 10,
+          PEOPLE_EMMA: 20,
+          PEOPLE_ROY: 30,
+          PEOPLE_COMPOSER: 40,
+        },
+        headerState: 0,
       };
     },
     mounted() {
       // watch for changes in the isMobile variable
       window.addEventListener('resize', () => {
-        this.isMobile = isMobile;
+        // this.isMobile = isMobile;
+        if (((this.headerState % 10) != this.mobileAppend) && isMobile) {
+          this.headerState += this.mobileAppend;
+        }
+        else if (((this.headerState % 10) == this.mobileAppend) && !isMobile) {
+          this.headerState -= this.mobileAppend;
+        }
+      });
+      this.$watch(() => this.state, (newVal) => {
+        this.handleHeaderState(newVal);
       });
     },
     methods: {
@@ -128,13 +213,17 @@
         this.showDropdown = !this.showDropdown;
       },
       headerItemEnhover(event) {
-        event.target.classList.add('protest-guerrilla-regular');
+        if ((this.headerState / 10) * 10 == this.headerStates.NORMAL)
+          event.target.classList.add('protest-guerrilla-regular');
       },
       headerItemDehover(event) {
         event.target.classList.remove('protest-guerrilla-regular');
+      },
+      handleHeaderState(state) {
+        this.headerState = state + (isMobile ? this.mobileAppend : 0);
+        console.log('HeaderView received headerState ' + state.toString() + ' from parent');
+        console.log('HeaderView set headerState to ' + this.headerState.toString());
       }
-      // highlight the route-menu when clicked
-
     }
   };
   </script>
@@ -149,10 +238,22 @@
     height: auto;
   }
 
-  header.desktop {
+  .normal_desktop {
     width: 90vw;
     margin: 0 auto;
     padding: 10px 0;
+  }
+
+  .brian_header {
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #000000;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 0;
+    padding-right: 0;
+    height: auto;
   }
 
   header.mobile {
@@ -296,7 +397,7 @@
     font-size: min(4vh, 3vw);
   }
 
-  .nav-container {
+  .nav-container.normal {
     display: flex;
     justify-content: space-between;
     font-size: 2.5vh;
@@ -304,12 +405,32 @@
     margin: 0 auto;
   }
 
+  .nav-container.brian {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5vh;
+    width: 100%;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+  }
+
   nav{
     display: flex;
-    margin-top: 1vh;
     font-size:2.5vh;
     justify-content: space-between;
+  }
+
+  nav.normal {
     width: 50%;
+    margin-top: 1vh;
+  }
+
+  nav.brian {
+    margin: 0 0 0 0;
+  }
+
+  nav.brian {
+    width: 40%;
   }
 
   ul.left{
@@ -317,22 +438,49 @@
     margin-right: auto;
   }
 
+  ul.left.brian {
+    float: right;
+    margin-left: auto;
+    margin-right: 5vw;
+  }
+
   ul.right{
     float: right;
     margin-left: auto;
   }
 
+  ul.right.brian {
+    float: left;
+    margin-right: auto;
+    margin-left: 5vw;
+  }
+
   nav ul{
     list-style-type: none;
-    margin-top: auto;
-    margin-bottom: 1vh;
     padding: 0;
     display: flex;
+  }
+
+  nav.normal ul{
+    margin-top: auto;
+    margin-bottom: 1vh;
+  }
+
+  nav.brian ul{
+    margin-top: auto;
+    margin-bottom: auto;
   }
   
   nav ul li {
     margin-right: 3vw;
+  }
+
+  nav.normal ul li {
     font-family: "Times New Roman", Times, serif;
+  }
+
+  nav.brian ul li {
+    font-family: "Arial", sans-serif;
   }
 
   nav ul li.last {
@@ -343,15 +491,32 @@
     color: #000000;
     text-decoration: none;
   }
+
+  nav.brian ul li a {
+    color: #ffffff;
+    text-decoration: none;
+  }
   
   nav ul li a:hover {
     color: #b20000;
     font-weight: bold;
   }
 
+  nav.brian ul li a:hover {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
   nav ul.right li a:hover {
     color: #ff6600;
     font-weight: bold;
+  }
+
+  nav.brian ul.right li a:hover {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: underline;
   }
 
   .line-between {
@@ -361,6 +526,33 @@
     background-color: white;
     width: 100%;
     margin: auto;
+  }
+
+  .brian_header_center {
+    color: #ffffff;
+    display: flex;
+    padding: 0 0 0 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brian_header_title {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 4vh;
+    height: auto;
+  }
+
+  .brian_header_subtitle {
+    /* font-weight: bold; */
+    font-family: 'Arial', sans-serif;
+    font-size: 2.5vh;
+    height: auto;
   }
   </style>
   
