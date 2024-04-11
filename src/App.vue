@@ -54,11 +54,6 @@ export default defineComponent({
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   },
-  beforeRouteUpdate(to, from, next) {
-    next();
-    this.scrollToTop();
-    this.headerOpacity = 1;
-  },
   // define functions here
   methods: {
     updateElHeight() {
@@ -79,6 +74,9 @@ export default defineComponent({
       console.log('App received and emitted headerState ' + state.toString() + ' to HeaderView');
       if (state == 10) {
         window.removeEventListener('scroll', this.handleScroll);
+        this.scrollToTop();
+        this.headerOpacity = 1;
+        this.$refs.header.style.pointerEvents = 'auto';
       }
       else if (state == 0) {
         window.addEventListener('scroll', this.handleScroll);
