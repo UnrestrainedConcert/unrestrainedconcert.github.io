@@ -223,6 +223,7 @@
         this.headerState = state + (isMobile ? this.mobileAppend : 0);
         console.log('HeaderView received headerState ' + state.toString() + ' from parent');
         console.log('HeaderView set headerState to ' + this.headerState.toString());
+        console.log(new Date().toLocaleTimeString());
       }
     }
   };

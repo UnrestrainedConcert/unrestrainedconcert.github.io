@@ -54,6 +54,11 @@ export default defineComponent({
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   },
+  beforeRouteUpdate(to, from, next) {
+    next();
+    this.scrollToTop();
+    this.headerOpacity = 1;
+  },
   // define functions here
   methods: {
     updateElHeight() {
