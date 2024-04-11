@@ -11,8 +11,7 @@
                 :style="{ opacity: current_opacity[index] }"
             />
             <div class="gradient-0"
-                v-if="index == 0">
-                <!-- && scrollValue <= images[index].end_fade"> -->
+                v-if="index == 0 && scrollValue <= images[index].end_fade">
             </div>
         </div>
         <div class="content-0">
@@ -106,7 +105,7 @@ export default {
             console.log('BrianGuo scrollValue changed from ' + oldValue + ' to ' + newValue);
             this.changeContentVisibility(this.contents[0].title, newValue);
             this.changeContentVisibility(this.contents[0].subtitle, newValue);
-            // this.handleImage(newValue);
+            this.handleImage(newValue);
         });
     },
     beforeUnmount() {

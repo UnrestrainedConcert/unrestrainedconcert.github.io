@@ -77,6 +77,7 @@ export default defineComponent({
         this.scrollToTop();
         this.headerOpacity = 1;
         this.$refs.header.style.pointerEvents = 'auto';
+        console.log('App tried to reset the header bar.');
       }
       else if (state == 0) {
         window.addEventListener('scroll', this.handleScroll);
@@ -84,6 +85,9 @@ export default defineComponent({
     },
     handleScroll() {
       if (this.headerState == 10) {
+        this.headerOpacity = 1;
+        this.$refs.header.style.pointerEvents = 'auto';
+        console.log("hey! why here!");
         return;
       }
       if (isMobile) {
