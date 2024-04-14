@@ -16,8 +16,26 @@
         </div>
         <div class="content-0">
             <div class="content-0-text">
-                <div class="content-0-title" v-if="contents[0].title.show">{{contents[0].title.text}}</div>
-                <div class="content-0-subtitle" v-if="contents[0].subtitle.show">{{contents[0].subtitle.text}}</div>
+                <div class="content-0-title"
+                    v-if="contents[0].title.show"
+                    ref="content_0_title"
+                    :class="{ 
+                        enlargeFromCenter: contents[0].title.animation_in, 
+                        disappearIntoCenter: contents[0].title.animation_out,
+                        on: contents[0].title.show && !(contents[0].title.animation_in && contents[0].title.animation_out),
+                        off: !contents[0].title.show}"
+                >
+                    {{contents[0].title.text}}
+                </div>
+                <div class="content-0-subtitle"
+                    v-if="contents[0].subtitle.show"
+                    ref="content_0_subtitle"
+                    :class="{ 
+                        enlargeFromCenter: contents[0].subtitle.animation_in, 
+                        disappearIntoCenter: contents[0].subtitle.animation_out,
+                        on: (contents[0].subtitle.show && contents[0].subtitle.animation_in) || (!contents[0].subtitle.show && !contents[0].subtitle.animation_out),
+                        off: (!contents[0].subtitle.show && contents[0].subtitle.animation_in) || (contents[0].subtitle.show && !contents[0].subtitle.animation_out)}"
+                >{{contents[0].subtitle.text}}</div>
             </div>
         </div>
     </div>
@@ -81,20 +99,7 @@ export default {
             current_opacity: [1.0, 0.0, 0.0, 0.0, 0.0],
             srcIndex: 0,
             // contents[?]: {title: {text, show, scroll}, subtitle: {text, show, scroll}}
-            contents: [
-                {
-                    title: {
-                        text: 'Brian Guo',
-                        show: false,
-                        scroll: 100,
-                    },
-                    subtitle: {
-                        text: 'URFO Music Director since 2023',
-                        show: false,
-                        scroll: 200,
-                    }
-                }
-            ]
+            contents: require("@/assets/about/people/Brian/contents/content.json").contents,
         };
     },
     mounted() {
@@ -114,9 +119,22 @@ export default {
     },
     methods: {
         changeContentVisibility(content, scroll) {
-            if (content.show && scroll < content.scroll) {
-                content.show = false;
-            } else if (!content.show && scroll >= content.scroll) {
+            // TODO: fix the bug when adding hide_scroll into consideration
+            if (content.show && !content.animation_out && (scroll < content.show_scroll)) {
+                // play animation to hide
+                content.animation_out = true;
+                setTimeout(() => {
+                    content.animation_out = false;
+                    content.show = false;
+                }, 500);
+            } else if (!content.show && !content.animation_in && (scroll >= content.show_scroll)) {
+                // play animation to show
+                content.animation_in = true;
+                console.log('BrianGuo content' + content.text + ' animation_in: ' + content.animation_in);
+                setTimeout(() => {
+                    content.animation_in = false;
+                    console.log('BrianGuo content' + content.text + ' animation_in: ' + content.animation_in);
+                }, 500);
                 content.show = true;
             }
         },
@@ -142,7 +160,7 @@ export default {
                     new_opacity = 0.0;
                 }
                 this.current_opacity[i] = new_opacity;
-                console.log('BrianGuo image' + i + ' opacity: ' + new_opacity + ' at scroll ' + scroll);
+                // console.log('BrianGuo image' + i + ' opacity: ' + new_opacity + ' at scroll ' + scroll);
             }
         }
     }
@@ -210,8 +228,47 @@ export default {
     font-size: min(10vh, 30vw);
 }
 
+.content-0-title.off {
+    opacity: 0;
+}
+
+.content-0-title.on {
+    opacity: 1;
+}
+
 .content-0-subtitle {
     margin-top: 2.5vh;
     font-size: min(3vh, 10vw);
+}
+
+.enlargeFromCenter {
+    animation: enlargeFromCenter 0.5s forwards;
+}
+
+.disappearIntoCenter {
+    animation: disappearIntoCenter 0.5s forwards;
+}
+
+@keyframes enlargeFromCenter {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animation to disappear into center */
+@keyframes disappearIntoCenter {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
 }
 </style>

@@ -1,0 +1,33 @@
+{
+    "contents": [
+        {
+            "title": {
+                "text": "Brian Guo",
+                "show": false,
+                "show_scroll": 100,
+                "hide_scroll": 400,
+                "animation_in": false,
+                "animation_out": false
+            },
+            "subtitle": {
+                "text": "URFO Music Director since 2023",
+                "show": false,
+                "show_scroll": 200,
+                "hide_scroll": 400,
+                "animation_in": false,
+                "animation_out": false
+            },
+            "description": {
+                "text": [
+                    "Brian Guo is the founder of Unrestrained Music Festival, an annual summer classical music event for amateur musicians. He also leads the establishment of Unrestrained Festival Orchestra, URFO, an orchestra with increasing size and professionalism.",
+                    "As a music director, Brian has an ambitious vision for URFO and the festival. He is passionate about bringing classical music to the community and providing opportunities for amateur musicians to perform in a professional setting.",
+                    "Brian is a great supporter of the genre of concerto, since amateur musicians often do not have the opportunity to perform with an orchestra, not even to be accompanied by a piano. Under the invitation and initiative of Brian, during the past three `Unrestrained`-series concert, the stage of Unrestrained has been graced by many talented soloists, bringing a total of 1 flute, 2 cello, 3 violin, and 6 piano concertos to the audiences.",
+                    "He is also a staunch advocate and pursuer of modern serious music. A long term as well as short term goal of URFO is to commission and perform meaningful and high quality new music by composers of this generation. During the past three concerts, Unrestrained has welcomed the birth of `Pine Nuts` by composer Lixing Wang, as well as the world premiere of `Escapade of the Busters` by composer M, the mysterious URFO composer-in-residence."
+                ],
+                "show": false,
+                "start_scroll": 400,
+                "end_scroll": 800
+            }
+        }
+    ]
+}
